@@ -1,6 +1,7 @@
 name: Build probe
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -17,8 +18,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
-      - name: Install Android build components
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: false
       - name: Check Python tools
         run: python3 -m py_compile tools/inspect_apk.py tools/preflight.py
       - name: Build and lint
