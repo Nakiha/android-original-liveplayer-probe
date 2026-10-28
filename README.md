@@ -2,7 +2,7 @@
 
 一个实验性的 Android 宿主，用于验证能否从用户提供的官方 APK，直接加载其原始播放器 DEX 与 ARM64 `.so`，并记录初始化、播放和诊断回调。
 
-**状态：已在 ARM64 Android 17 真机，用本地导入的 `40.7.0 / 400701` 原包完成 native 加载、播放器创建、H.264 和 H.265 的首音频帧/首视频帧及周期统计验证。** H.265 硬解和软解对照均已出帧。标准 `vvc1` enhanced-FLV 合成输入尚未出帧，不能声称 H.266 已跑通。`40.9.0 / 400901` 仅完成静态接口检查，未完成对应的宿主初始化适配。这不是抖音等价实现，也不能保证复现某个线上会话的动态配置。
+**状态：已在 ARM64 Android 17 真机，用本地导入的 `40.7.0 / 400701` 原包完成 native 加载、播放器创建、H.264 和 H.265 的首音频帧/首视频帧及周期统计验证。** H.265 硬解和软解对照均已出帧。另已在 root 模拟器采集官方直播的输入配置和 settings 返回值，用原包播放器在独立 App 复播同一条 H.265 流，校验完整选中 URL 与 stream_data 的哈希一致。这仍不是完整客户端等价实现，DNS 等差异见下文。标准 `vvc1` enhanced-FLV 合成输入尚未出帧，不能声称 H.266 已跑通。`40.9.0 / 400901` 仅完成静态接口检查，未完成对应的宿主初始化适配。
 
 仓库只包含原创探针源码、构建脚本和静态检查工具。原始 APK、库、DEX、反编译输出、测试流地址和运行日志均由使用者在本地提供，不随仓库或探针 APK 分发。
 
@@ -125,7 +125,7 @@ adb shell am start -W -S -f 0x10008000 -n local.originalplayer.probe/.MainActivi
 
 ## Windows root 模拟器实验环境
 
-已在 Windows WHPX 上验证独立 AVD `LivePlayerRoot35`：Android 15 / API 35，Google APIs x86_64 镜像（非 Play Store，revision 9）。该镜像实测 `ro.debuggable=1`、`adb root` 后 `uid=0`，ABI 包含 x86_64 与 arm64-v8a，Native Bridge 为 `libndk_translation.so`。本地导入的官方 40.7.0 可启动、加载 `libttmplayer.so`，匹配版本的 Frida 17.24.3 已成功附加 Java 进程。尚未由此完成真实直播会话的 URL/配置采集。
+已在 Windows WHPX 上验证独立 AVD `LivePlayerRoot35`：Android 15 / API 35，Google APIs x86_64 镜像（非 Play Store，revision 9）。该镜像实测 `ro.debuggable=1`、`adb root` 后 `uid=0`，ABI 包含 x86_64 与 arm64-v8a，Native Bridge 为 `libndk_translation.so`。本地导入的官方 40.7.0 可启动、加载 `libttmplayer.so`，匹配版本的 Frida 17.24.3 已完成真实直播会话的 URL/配置采集及独立宿主同流复播。
 
 Google Play Store 镜像不能直接 `adb root`；AOSP 镜像虽然可 root，但不保证带 ARM 转译。镜像选择见 [Android 官方说明](https://developer.android.com/studio/run/managing-avds)。实际镜像的 root 和 ARM 兼容性仍须验证。
 
@@ -141,6 +141,60 @@ avdmanager create avd -n LivePlayerRoot35 -k 'system-images;android-35;google_ap
 
 模拟器适合入口参数和调用链探查。ARM 转译、虚拟 codec 和不同设备身份会影响行为与服务端下发；不能把模拟器的解码性能、硬解路径、功耗、卡顿或灰度配置当作原手机的测量结果。Frida 插桩本身也有开销。采集与重放仍需校验具体流和配置，而不是仅确认处在同一直播间。
 
+### 模拟器上的 ARM64 宿主
+
+默认 APK 没有 native 库，x86_64 模拟器会将它作为 x86_64 进程启动。原包加载器因此可能拒绝导入的 ARM64 库。为此提供可选构建，加入一个原创 ARM64 ELF 标记，让系统为宿主选择 ARM64 转译进程。它不包含原包库，也不改变原库内容。需要 NDK `25.2.9519653`，该选项目前提供 Windows/Linux 构建路径：
+
+```powershell
+.\gradlew.bat -PprobeArm64Host=true :app:assembleDebug :app:lintDebug
+adb -s emulator-5556 install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+也可安装 Release 中名称含 `arm64-host` 的 APK。打开后仍须本地导入原包，且不能用此环境评估真机硬解性能。
+
+## 采集原客户端并同流复播
+
+以下流程已针对 `40.7.0 / 400701`、`1.10.288.9-native` 验证。需要可附加原客户端的 root 开发环境、匹配的 Frida server/client，以及 Python `frida-tools`（验证版本为 Frida 17.24.3、frida-tools 14.11.0）。宿主先导入同版本原 APK。
+
+在原客户端停留于可切换到直播的页面，取得主进程 PID。先启动采集，等待 `ready`，再在客户端切入一个直播，使播放器重新创建；附加时已经播放的播放器无法补出历史初始化调用：
+
+```powershell
+adb -s emulator-5556 shell pidof com.ss.android.ugc.aweme
+python tools/capture_liveplayer.py --device emulator-5556 --pid 12345 --seconds 45 --statistics --output captures/session/source-private.jsonl
+```
+
+将示例 PID 换成当前值。`--statistics` 是明确的诊断改动：原配置先记录，再启用每秒统计回调。省略该选项可观察未修改的配置，但可能缺少实际选中流的统计 URL。
+
+采集范围是 11 个已验证的 JNI 设置/播放入口、实际 settings 查询返回值，以及原业务 observer 的部分回调。Java 层公开方法可能被 R8 内联，仅 hook 公开 setter 不足以获得真实输入。Native Bridge 下替换其他未验证的 native 方法曾引发 JNI 注册失败，因此工具限制在已验证范围；它不声称截获全部调用。
+
+生成仅保存在本地的重放文档，然后发送给独立宿主并记录一次播放：
+
+```powershell
+python tools/make_replay.py captures/session/source-private.jsonl --source-version-code 400701 --output captures/session/replay-private.json
+python tools/run_replay.py captures/session/replay-private.json --serial emulator-5556 --seconds 20 --output captures/session/probe-private.jsonl
+```
+
+可用 `--adb C:/path/to/adb.exe` 指定工具路径。多播放器记录需显式指定 `make_replay.py --player-id`；有采集错误、归属不明的 settings 或版本不符时停止。App 只接收自身私有目录下的重放文件，执行限定的设置入口，不执行 JSON 任意方法名。
+
+重放保留原始 `stream_data` 字符串、配置和 int/string properties，并用捕获到的带类型 settings 返回值实现设置接口。未覆盖的查询使用原调用的默认值并写入 `replay_settings_default_fallback`，不能悄悄当作已复现。业务 observer 替换为探针观察器；统计每秒一次。工具不会迁移业务对象、历史全局状态或原宿主网络客户端。
+
+**同直播间、同一份多档配置仍可能播放不同码流。** 实测首次重放选择了 1080×1920 / 60 fps，而原客户端实际播放 720×1280 / 30 fps。工具根据原统计中的实际 URL 找到对应 `hd` 档并固定起播档位后，才验证完整 URL 哈希相同。这是在控制相同输出码流，不代表复现了原客户端 ABR 决策。
+
+本轮最终对照记录：
+
+| 项目 | 官方客户端 | 独立宿主 |
+| --- | --- | --- |
+| 原内核 | 1.10.288.9-native | 相同 |
+| 流与封装路径 | H.265，LLASH / HTTP | 相同配置路径，统计为 FLV / TCP |
+| 实际画面规格 | 720×1280，约 30 fps | 相同 |
+| 完整选中 URL / stream_data | 本地保留 | 两项 SHA-256 均与原记录一致 |
+| settings 覆盖 | 208 次观测，108 个 key+带类型默认值组合 | 本次重放零默认值回退 |
+| DNS 统计路径 | http_dns | http_dns_embed |
+
+这里的 LLASH 是原内核报告的播放格式，不据此推定所有抖音直播都用这一流程。DNS 路径仍有差别，自定义网络客户端及历史全局配置尚未移植。`hardware_codec` 仅证明选了内核的 MediaCodec 路径；该模拟器观察到 `c2.goldfish.hevc.decoder`，不能视作手机芯片硬解。
+
+所有原始记录可能包含完整签名 URL、房间/用户标识和业务配置。`captures/` 被 Git 忽略，工具只向标准输出打印概要，不将原记录、原包或原库上传。地址可能有时效和鉴权限制，失效后需重新采集。本轮未获得 H.266 灰度流，也未解释业务层“进入房间失败”的原因。
+
 ## 验证记录
 
 | 检查 | 当前状态 |
@@ -152,6 +206,7 @@ avdmanager create avd -n LivePlayerRoot35 -k 'system-images;android-35;google_ap
 | 本机 H.264 音视频出帧 | 通过，统计报告 hardware_codec / isHardwareDecode=true |
 | 本机 H.265 允许硬解 | 通过，统计报告 h265 / hardware_codec / isHardwareDecode=true |
 | 本机 H.265 关闭硬解 | 通过，统计报告 h265 / JX_ByteVC1_codec / isHardwareDecode=false |
+| root 模拟器真实直播同流重放 | 通过；H.265 / 720×1280 / 约 30 fps；完整 URL、stream_data 哈希一致，DNS 路径仍有差异 |
 | 标准 enhanced-FLV VVC 控制素材 | 未出帧，出现重试；未判定根因 |
 | 客户实验流的 H.266、线上配置及卡顿等价性 | 尚未验证，需要真实测试流与配置证据 |
 

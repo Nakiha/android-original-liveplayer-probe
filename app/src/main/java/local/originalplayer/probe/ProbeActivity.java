@@ -111,7 +111,8 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
             attachObserver();
             if (!"play".equals(mode)) return;
             if (!surface.getHolder().getSurface().isValid()) throw new IllegalStateException("Surface is not ready");
-            if (engine == 0) {
+            String replayPath = getIntent().getStringExtra("replay");
+            if (engine == 0 && replayPath == null) {
                 Class<?> cfgClass = Class.forName("com.ss.videoarch.liveplayer2.VeLivePlayerConfiguration", true, original);
                 Object config = cfgClass.getConstructor().newInstance();
                 cfgClass.getField("enableStatisticsCallback").setBoolean(config, true);
@@ -122,8 +123,19 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
                         + "; hardware enabled is not hardware-only; actual decode path must come from statistics; online settings unavailable");
                 engineClass.getMethod("setConfig", cfgClass).invoke(player, config);
                 engineClass.getMethod("setSurface", Surface.class, boolean.class).invoke(player, surface.getHolder().getSurface(), false);
-            } else {
+            } else if (engine != 0) {
                 engineClass.getMethod("setSurface", Surface.class).invoke(player, surface.getHolder().getSurface());
+            }
+            if (replayPath != null) {
+                if (engine != 0) throw new IllegalArgumentException("Replay requires the native live engine");
+                JSONObject imported = new JSONObject(MainActivity.read(new File(root, "import.json")));
+                ReplaySession replay = new ReplaySession(new File(replayPath));
+                replay.apply(player, engineClass, original, String.valueOf(callStatic("getVersion", new Class<?>[0])), imported.getLong("version_code"), this::record);
+                engineClass.getMethod("setSurface", Surface.class, boolean.class).invoke(player, surface.getHolder().getSurface(), false);
+                engineClass.getMethod("play").invoke(player);
+                record("replay_play_invoked", "Await actual first-frame/statistics callbacks");
+                main.postDelayed(this::snapshotNativeState, 5000);
+                return;
             }
             String url = getIntent().getStringExtra("url");
             String syntheticCodec = getIntent().getStringExtra("smoke");
@@ -144,6 +156,7 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
             record("before_play", name);
             engineClass.getMethod("play").invoke(player);
             record("play_invoked", "Await original first-frame/error/stall callbacks; invocation alone is not success");
+            if (engine == 0) main.postDelayed(this::snapshotNativeState, 5000);
         } catch (Throwable error) {
             while (error instanceof InvocationTargetException && ((InvocationTargetException) error).getCause() != null)
                 error = ((InvocationTargetException) error).getCause();
@@ -153,6 +166,20 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
 
     private Object callStatic(String name, Class<?>[] types, Object... args) throws Exception {
         return engineClass.getMethod(name, types).invoke(null, args);
+    }
+
+    private void snapshotNativeState() {
+        if (player == null || engine != 0) return;
+        try {
+            JSONObject values = new JSONObject();
+            for (String key : new String[]{"VeLivePlayerKeyGetStreamLog", "VeLivePlayerKeyGetStreamBaseInfo"}) {
+                Object value = engineClass.getMethod("getProperty", String.class, Object.class).invoke(player, key, "");
+                values.put(key, value == null ? JSONObject.NULL : value.toString());
+            }
+            // Raw addresses remain in private diagnostics rather than the visible UI summary.
+            ProbeLog.write(this, "native_state_snapshot", values);
+            record("native_state_snapshot_saved", "Original stream log/base information retained in local JSONL");
+        } catch (Exception error) { record("native_state_snapshot_failure", error.toString()); }
     }
 
     private File prepareCallbackBridge() throws java.io.IOException {

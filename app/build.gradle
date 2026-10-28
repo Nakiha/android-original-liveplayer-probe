@@ -7,8 +7,8 @@ android {
         applicationId 'local.originalplayer.probe'
         minSdk 23
         targetSdk 34
-        versionCode 2
-        versionName '0.2-research'
+        versionCode 3
+        versionName '0.3-research'
     }
     buildTypes { debug { minifyEnabled false } }
     sourceSets {
@@ -45,3 +45,27 @@ tasks.register('buildObserverDex') {
     }
 }
 tasks.named('preBuild').configure { dependsOn 'buildObserverDex' }
+
+// Optional emulator variant: only owned code is bundled to select ARM64 process ABI.
+if (providers.gradleProperty('probeArm64Host').orNull == 'true') {
+    android.ndkVersion = '25.2.9519653'
+    def markerRoot = layout.buildDirectory.dir('generated/arm64-host')
+    android.sourceSets.debug.jniLibs.srcDir markerRoot
+    tasks.register('buildArm64HostMarker') {
+        inputs.file('src/main/c/arm64_host.c')
+        outputs.file(markerRoot.map { it.file('arm64-v8a/libprobe_arm64_host.so') })
+        doLast {
+            def target = markerRoot.get().file('arm64-v8a/libprobe_arm64_host.so').asFile
+            target.parentFile.mkdirs()
+            def host = System.getProperty('os.name').toLowerCase().contains('windows') ? 'windows-x86_64' : 'linux-x86_64'
+            def suffix = host.startsWith('windows') ? '.exe' : ''
+            def clang = new File(android.sdkDirectory, "ndk/25.2.9519653/toolchains/llvm/prebuilt/$host/bin/clang$suffix")
+            exec {
+                commandLine clang.absolutePath, '--target=aarch64-linux-android23', '-fPIC', '-shared', '-nostdlib',
+                    '-Wl,-soname,libprobe_arm64_host.so', '-Wl,-z,max-page-size=16384', '-Wl,--build-id=sha1',
+                    file('src/main/c/arm64_host.c').absolutePath, '-o', target.absolutePath
+            }
+        }
+    }
+    tasks.named('preBuild').configure { dependsOn 'buildArm64HostMarker' }
+}

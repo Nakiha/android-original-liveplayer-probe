@@ -81,6 +81,17 @@ public final class MainActivity extends Activity {
             engine.setSelection(intent.getIntExtra("probe_engine", 0));
             decoding.setSelection(intent.getBooleanExtra("probe_hardware", true) ? 0 : 1);
             if (intent.hasExtra("probe_url")) url.setText(intent.getStringExtra("probe_url"));
+            if (intent.hasExtra("probe_replay")) {
+                String name = intent.getStringExtra("probe_replay");
+                if (imported.isEmpty() || name == null || !name.matches("[A-Za-z0-9_-]+\\.json")) {
+                    status.setText("请先导入原包，并提供本地会话 JSON 文件名。"); return;
+                }
+                File file = new File(getFilesDir(), "replays/" + name);
+                if (!file.isFile()) { status.setText("本地会话文件不存在。"); return; }
+                startActivity(new Intent(this, ProbeActivity.class).putExtra("root", imported)
+                        .putExtra("mode", "play").putExtra("engine", 0).putExtra("replay", file.getAbsolutePath()));
+                return;
+            }
             String smoke = intent.getStringExtra("probe_smoke");
             if ("play".equals(mode) && Arrays.asList("h264", "h265", "h266-enhanced").contains(smoke)) startSynthetic(smoke);
             else startProbe(mode);
