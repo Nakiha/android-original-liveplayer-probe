@@ -32,18 +32,7 @@ public final class MainActivity extends Activity {
         TextView note = new TextView(this);
         note.setText("直接加载你导入的抖音 APK 中的原始 DEX 和 ARM64 so。未替换解码器；未初始化抖音 Application。\n加载、初始化、播放是不同验证阶段。成功加载不代表已复现线上配置。");
         box.addView(note);
-        button(box, "导入本机已安装的抖音（无需电脑）", v -> {
-            for (String name : new String[]{"com.ss.android.ugc.aweme", "com.ss.android.ugc.aweme.mobile"}) {
-                try {
-                    android.content.pm.ApplicationInfo installed = getPackageManager().getApplicationInfo(name, 0);
-                    if (installed.splitSourceDirs != null && installed.splitSourceDirs.length > 0) {
-                        status.setText("检测到分包安装，本版探针需要独立完整 APK。请通过文件选择导入官方完整 APK。"); return;
-                    }
-                    beginImport(android.net.Uri.fromFile(new File(installed.sourceDir))); return;
-                } catch (android.content.pm.PackageManager.NameNotFoundException absent) { /* Try the next known variant. */ }
-            }
-            status.setText("未检测到标准版抖音。也可通过下面的文件入口导入官方 APK。");
-        });
+        button(box, "导入本机已安装的抖音（无需电脑）", v -> importInstalled());
         importer = button(box, "1. 导入官方抖音 APK", v -> {
             Intent pick = new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("*/*").addCategory(Intent.CATEGORY_OPENABLE);
             startActivityForResult(pick, PICK_APK);
@@ -62,6 +51,9 @@ public final class MainActivity extends Activity {
         button(box, "2. 验证原类和 native 加载", v -> startProbe("load"));
         button(box, "3. 初始化原播放器", v -> startProbe("init"));
         button(box, "4. 用原播放器尝试播放 URL", v -> startProbe("play"));
+        syntheticButton(box, "本机合成测试：H.264", "h264");
+        syntheticButton(box, "本机合成测试：H.265", "h265");
+        syntheticButton(box, "封装兼容测试：VVC enhanced FLV（未出帧）", "h266-enhanced");
         button(box, "查看本次探针日志", v -> {
             try { status.setText(read(new File(getFilesDir(), "probe.jsonl"))); }
             catch (Exception error) { status.setText(error.toString()); }
@@ -72,6 +64,52 @@ public final class MainActivity extends Activity {
         status.setText("导入目录：" + imported + "\n设备 ABI：" + Arrays.toString(Build.SUPPORTED_ABIS));
         box.addView(status);
         ScrollView scroll = new ScrollView(this); scroll.addView(box); setContentView(scroll);
+        handleDebugAction(getIntent());
+    }
+
+    @Override protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent); setIntent(intent); handleDebugAction(intent);
+    }
+
+    private void handleDebugAction(Intent intent) {
+        if ((getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) == 0) return;
+        String action = intent.getStringExtra("probe_action");
+        if ("import-installed".equals(action)) importInstalled();
+        else if ("run".equals(action)) {
+            String mode = intent.getStringExtra("probe_mode");
+            if (!Arrays.asList("load", "init", "play").contains(mode)) return;
+            engine.setSelection(intent.getIntExtra("probe_engine", 0));
+            decoding.setSelection(intent.getBooleanExtra("probe_hardware", true) ? 0 : 1);
+            if (intent.hasExtra("probe_url")) url.setText(intent.getStringExtra("probe_url"));
+            String smoke = intent.getStringExtra("probe_smoke");
+            if ("play".equals(mode) && Arrays.asList("h264", "h265", "h266-enhanced").contains(smoke)) startSynthetic(smoke);
+            else startProbe(mode);
+        }
+    }
+
+    private void startSynthetic(String codec) {
+        if (imported.isEmpty()) { status.setText("请先导入 APK。"); return; }
+        startActivity(new Intent(this, ProbeActivity.class).putExtra("root", imported).putExtra("mode", "play")
+                .putExtra("engine", 0).putExtra("hardware", decoding.getSelectedItemPosition() == 0).putExtra("smoke", codec));
+    }
+
+    private void syntheticButton(LinearLayout box, String label, String codec) {
+        Button test = button(box, label, v -> startSynthetic(codec));
+        try (InputStream ignored = getAssets().open(codec + ".flv")) { /* Asset available. */ }
+        catch (IOException missing) { test.setEnabled(false); test.setText(label + "（未包含测试素材）"); }
+    }
+
+    private void importInstalled() {
+        for (String name : new String[]{"com.ss.android.ugc.aweme", "com.ss.android.ugc.aweme.mobile"}) {
+            try {
+                android.content.pm.ApplicationInfo installed = getPackageManager().getApplicationInfo(name, 0);
+                if (installed.splitSourceDirs != null && installed.splitSourceDirs.length > 0) {
+                    status.setText("检测到分包安装，本版探针需要独立完整 APK。请通过文件选择导入官方完整 APK。"); return;
+                }
+                beginImport(android.net.Uri.fromFile(new File(installed.sourceDir))); return;
+            } catch (android.content.pm.PackageManager.NameNotFoundException absent) { /* Try next known variant. */ }
+        }
+        status.setText("未检测到标准版抖音。也可通过文件入口导入官方 APK。");
     }
 
     private Button button(LinearLayout box, String text, View.OnClickListener click) {
@@ -86,6 +124,13 @@ public final class MainActivity extends Activity {
         String address = url.getText().toString().trim();
         if (mode.equals("play") && !(address.startsWith("http://") || address.startsWith("https://"))) {
             status.setText("请输入你的 HTTP/HTTPS 直播测试 URL。"); return;
+        }
+        if (mode.equals("play")) {
+            android.net.Uri parsed = android.net.Uri.parse(address);
+            int port = parsed.getPort(), standard = "https".equals(parsed.getScheme()) ? 443 : 80;
+            if (parsed.getHost() == null || port != -1 && port != standard) {
+                status.setText("本版已验证的地址入口使用 HTTP 80 / HTTPS 443；原内核会重写非标准端口。请提供标准端口的拉流入口。"); return;
+            }
         }
         startActivity(new Intent(this, ProbeActivity.class).putExtra("root", imported).putExtra("mode", mode)
                 .putExtra("engine", engine.getSelectedItemPosition()).putExtra("hardware", decoding.getSelectedItemPosition() == 0)

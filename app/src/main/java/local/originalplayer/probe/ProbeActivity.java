@@ -32,6 +32,7 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
     private String mode;
     private File root;
     private int engine;
+    private SyntheticLiveSource synthetic;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -71,9 +72,12 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
             if (!apk.isFile() || !apk.setReadOnly()) throw new IllegalStateException("Imported DEX archive must be read-only");
             File optimized = new File(root, "optimized");
             if (!optimized.isDirectory() && !optimized.mkdir()) throw new IllegalStateException("Cannot create optimized directory");
-            original = new DexClassLoader(apk.getAbsolutePath(), optimized.getAbsolutePath(),
+            File bridge = prepareCallbackBridge();
+            original = new DexClassLoader(apk.getAbsolutePath() + File.pathSeparator + bridge.getAbsolutePath(), optimized.getAbsolutePath(),
                     new File(root, "native").getAbsolutePath(), getClassLoader());
             Thread.currentThread().setContextClassLoader(original);
+            bindHostApplicationContext();
+            initializeOriginalLibraryHost(apk);
             String name = engine == 0 ? "com.ss.videoarch.liveplayer2.VeLivePlayer" : "com.ss.videoarch.liveplayer.VideoLiveManager";
             // This is the original DEX, not reconstructed Java or a public SDK.
             record("before_class_resolution", name);
@@ -86,6 +90,9 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
                 record("original_native_loader_result", loaded);
                 if (!Boolean.TRUE.equals(loaded)) throw new IllegalStateException("Original native loader returned false");
                 record("original_native_version", callStatic("getVersion", new Class<?>[0]));
+                Class<?> logLevel = Class.forName("com.ss.videoarch.liveplayer2.VeLivePlayerLogLevel", true, original);
+                engineClass.getMethod("setLogLevel", logLevel).invoke(null, logLevel.getField("VeLivePlayerLogLevelDebug").get(null));
+                record("native_log_level", "Debug diagnostic mode; do not use verbose logging for performance benchmarks");
             } else {
                 Class.forName("com.ss.ttm.player.TTPlayer", true, original);
                 record("original_ttm_class_initialized", true);
@@ -119,6 +126,12 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
                 engineClass.getMethod("setSurface", Surface.class).invoke(player, surface.getHolder().getSurface());
             }
             String url = getIntent().getStringExtra("url");
+            String syntheticCodec = getIntent().getStringExtra("smoke");
+            if (syntheticCodec != null) {
+                synthetic = new SyntheticLiveSource(this, syntheticCodec);
+                url = synthetic.url();
+                record("synthetic_source", "Phone-local paced HTTP-FLV, codec=" + syntheticCodec + "; generated pattern and tone; not a business-network benchmark");
+            }
             record("before_set_url", "User-supplied URL; value omitted from probe event");
             try { engineClass.getMethod("setPlayUrl", String.class).invoke(player, url); }
             catch (NoSuchMethodException missing) {
@@ -142,6 +155,79 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
         return engineClass.getMethod(name, types).invoke(null, args);
     }
 
+    private File prepareCallbackBridge() throws java.io.IOException {
+        File bridge = new File(getCodeCacheDir(), "observer-bridge.dex");
+        if (bridge.exists() && !bridge.delete()) throw new java.io.IOException("Cannot replace callback bridge");
+        try (java.io.InputStream input = getAssets().open("classes.dex");
+             java.io.FileOutputStream output = new java.io.FileOutputStream(bridge)) {
+            if (!bridge.setReadOnly()) throw new java.io.IOException("Cannot protect callback DEX");
+            MainActivity.copy(input, output, null);
+        }
+        return bridge;
+    }
+
+    private void bindHostApplicationContext() throws Exception {
+        Class<?> contexts = Class.forName("com.bytedance.ies.ugc.appcontext.AppContextManager", true, original);
+        Field context = contexts.getDeclaredField("context");
+        if (!Modifier.isStatic(context.getModifiers()) || !android.app.Application.class.isAssignableFrom(context.getType()))
+            throw new IllegalStateException("Unsupported original host context contract");
+        context.setAccessible(true);
+        if (context.get(null) == null) context.set(null, getApplication());
+        record("host_context_binding", "Original AppContextManager receives the probe Application; package identity and signatures unchanged");
+    }
+
+    private void initializeOriginalLibraryHost(File apk) throws Exception {
+        JSONObject imported = new JSONObject(MainActivity.read(new File(root, "import.json")));
+        long version = imported.getLong("version_code");
+        if (version != 400701) {
+            record("library_host_adapter", "No version-specific Librarian initialization adapter for " + version);
+            return;
+        }
+        Class<?> contexts = Class.forName("com.bytedance.ies.ugc.appcontext.AppContextManager", true, original);
+        android.content.pm.PackageInfo own = getPackageManager().getPackageInfo(getPackageName(), 0);
+        Field businessVersion = contexts.getDeclaredField("LJ");
+        businessVersion.set(null, businessVersion.getType().getConstructor(long.class, String.class, long.class)
+                .newInstance((long)own.versionCode, own.versionName, (long)own.versionCode));
+        Field packageVersion = contexts.getDeclaredField("LIZLLL");
+        packageVersion.set(null, packageVersion.getType().getConstructor(long.class, String.class)
+                .newInstance((long)own.versionCode, own.versionName));
+        contexts.getDeclaredField("LIZJ").set(null, "OriginalPlayerProbe");
+        // This holder's constructor only stores the Application argument. The original
+        // constructor is host-subclass typed, while its stored field is Application typed.
+        // Bind our Application; never construct or start the original host Application.
+        Class<?> holder = Class.forName("com.bytedance.ies.ugc.appcontext.ApplicationHolder", true, original);
+        Field binding = holder.getDeclaredField("LIZ");
+        if (binding.get(null) == null) {
+            Class<?> state = originalClass("X.0ksE");
+            Constructor<?> constructor = state.getConstructor(Class.forName("com.ss.android.ugc.aweme.app.host.AwemeHostApplication", false, original));
+            Object container = constructor.newInstance(new Object[]{null});
+            Field app = state.getDeclaredField("LIZ");
+            if (app.getType() != android.app.Application.class) throw new IllegalStateException("Application holder contract changed");
+            app.setAccessible(true); app.set(container, getApplication()); binding.set(null, container);
+            record("original_application_holder_initialized", "Probe Application bound to original holder; original Application not started");
+        }
+        Class<?> kevaBuilder = originalClass("X.1QXM");
+        Object builder = kevaBuilder.getDeclaredField("LJIIZILJ").get(null);
+        Field kevaContext = kevaBuilder.getDeclaredField("LIZ");
+        if (kevaContext.getType() != Context.class || builder == null) throw new IllegalStateException("Keva context contract changed");
+        kevaContext.set(builder, getApplication());
+        record("original_preferences_context_initialized", "Original preferences use probe-private storage");
+        // The 40.7.0 loader requires its normal init(Context, version, logger) before loadLibrary.
+        // Supply the probe context and original APK paths; do not replace or patch library bytes.
+        Class<?> libraryHost = originalClass("X.0lGF");
+        for (Method method : libraryHost.getDeclaredMethods()) {
+            Class<?>[] types = method.getParameterTypes();
+            if (Modifier.isStatic(method.getModifiers()) && types.length == 3 && types[0] == Context.class
+                    && types[1] == String.class && !types[2].isPrimitive() && types[2] != String.class) {
+                method.setAccessible(true);
+                method.invoke(null, makeEngineContext(apk), "probe-" + version, null);
+                record("original_library_host_initialized", libraryHost.getName() + "." + method.getName());
+                return;
+            }
+        }
+        throw new NoSuchMethodException("Original Librarian initialization contract not found");
+    }
+
     private Context makeEngineContext(File apk) throws Exception {
         ApplicationInfo info = new ApplicationInfo(getApplicationInfo());
         info.sourceDir = apk.getAbsolutePath(); info.publicSourceDir = apk.getAbsolutePath();
@@ -157,10 +243,16 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
         };
     }
 
+    private Class<?> originalClass(String rawDexName) throws ClassNotFoundException {
+        // Raw DEX names may be invalid Java source identifiers. Keep their resolution
+        // separate from member lookup so Java PSI-based lint does not parse them as source.
+        return Class.forName(rawDexName, true, original);
+    }
+
     private void attachObserver() throws Exception {
         String ifaceName = engine == 0 ? "com.ss.videoarch.liveplayer2.VeLivePlayerObserver" : "com.ss.videoarch.liveplayer.ILiveListener";
         Class<?> iface = Class.forName(ifaceName, true, original);
-        observer = Proxy.newProxyInstance(original, new Class<?>[]{iface}, (proxy, method, args) -> {
+        InvocationHandler handler = (proxy, method, args) -> {
             if (method.getDeclaringClass() == Object.class) {
                 if (method.getName().equals("hashCode")) return System.identityHashCode(proxy);
                 if (method.getName().equals("equals")) return args != null && proxy == args[0];
@@ -182,7 +274,20 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
                 } catch (ClassNotFoundException | NoSuchMethodException absent) { /* Try raw DEX companion name. */ }
             }
             throw new UnsupportedOperationException("No original default for callback " + method.getName());
-        });
+        };
+        if (engine == 0) {
+            // Do not use java.lang.reflect.Proxy for JNI callbacks: Android 17 CheckJNI
+            // can observe Proxy's erased Object return instead of the interface's void.
+            Class<?> bridgeClass = Class.forName("local.originalplayer.bridge.ConcreteObserver", true, original);
+            for (Method callback : iface.getMethods()) {
+                if (Modifier.isStatic(callback.getModifiers())) continue;
+                Method concrete = bridgeClass.getDeclaredMethod(callback.getName(), callback.getParameterTypes());
+                if (concrete.getReturnType() != callback.getReturnType()) throw new IllegalStateException("Observer return contract changed: " + callback.getName());
+            }
+            observer = bridgeClass.getConstructor(InvocationHandler.class).newInstance(handler);
+            if (!iface.isInstance(observer)) throw new IllegalStateException("Callback bridge interface mismatch");
+            record("observer_bridge", "Concrete JNI callback methods; original interface resolved from imported APK");
+        } else observer = Proxy.newProxyInstance(original, new Class<?>[]{iface}, handler);
         if (engine == 0) engineClass.getMethod("setObserver", iface).invoke(player, observer);
         else {
             Field field = null;
@@ -211,6 +316,7 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
     }
 
     private void shutdown() {
+        if (synthetic != null) { synthetic.close(); synthetic = null; }
         if (player == null) return;
         try { engineClass.getMethod("stop").invoke(player); }
         catch (Throwable error) { record("stop_failure", error.toString()); }

@@ -7,12 +7,41 @@ android {
         applicationId 'local.originalplayer.probe'
         minSdk 23
         targetSdk 34
-        versionCode 1
-        versionName '0.1-research'
+        versionCode 2
+        versionName '0.2-research'
     }
     buildTypes { debug { minifyEnabled false } }
+    sourceSets {
+        main.assets.srcDir layout.buildDirectory.dir('generated/observer-assets')
+        debug.assets {
+            srcDir '../samples/generated'
+            include 'h264.flv', 'h265.flv', 'h266-enhanced.flv'
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
 }
+
+def observerAssets = layout.buildDirectory.dir('generated/observer-assets')
+tasks.register('buildObserverDex') {
+    dependsOn ':observer-bridge:jar', ':observer-api:jar'
+    inputs.file(project(':observer-bridge').tasks.named('jar').flatMap { it.archiveFile })
+    inputs.file(project(':observer-api').tasks.named('jar').flatMap { it.archiveFile })
+    outputs.dir(observerAssets)
+    doLast {
+        def output = observerAssets.get().asFile
+        output.mkdirs()
+        def sdk = android.sdkDirectory
+        exec {
+            commandLine new File(System.getProperty('java.home'), 'bin/java').absolutePath,
+                '-cp', new File(sdk, 'build-tools/35.0.0/lib/d8.jar').absolutePath,
+                'com.android.tools.r8.D8', '--min-api', '23', '--output', output.absolutePath,
+                '--lib', new File(sdk, 'platforms/android-35/android.jar').absolutePath,
+                '--classpath', project(':observer-api').tasks.named('jar').get().archiveFile.get().asFile.absolutePath,
+                project(':observer-bridge').tasks.named('jar').get().archiveFile.get().asFile.absolutePath
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'buildObserverDex' }

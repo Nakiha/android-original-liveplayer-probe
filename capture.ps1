@@ -18,8 +18,8 @@ New-Item -ItemType Directory -Path $captureRoot | Out-Null
     Select-String -Pattern 'versionCode=|versionName=|lastUpdateTime=' |
     Out-File -LiteralPath (Join-Path $captureRoot 'installed-douyin-version.txt') -Encoding utf8
 # Keep all probe UID processes; do not clear or request unrelated device log buffers.
-$uidLine = (& $Adb @adbArgs shell dumpsys package local.originalplayer.probe | Select-String 'userId=' | Select-Object -First 1).Line
-if ($uidLine -notmatch 'userId=(\d+)') { throw 'Install the probe APK first.' }
+$uidLine = (& $Adb @adbArgs shell cmd package list packages -U local.originalplayer.probe | Select-String 'package:local.originalplayer.probe\s' | Select-Object -First 1).Line
+if ($uidLine -notmatch 'uid:(\d+)') { throw 'Install the probe APK first.' }
 $probeUid = $Matches[1]
 Write-Host "Recording probe UID $probeUid for $Seconds seconds. Run the probe stages on the phone now."
 $logArgs = $adbArgs + @('logcat', '-v', 'threadtime', "--uid=$probeUid")

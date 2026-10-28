@@ -1,0 +1,11 @@
+plugins { id 'java-library' }
+java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
+dependencies { compileOnly project(':observer-api') }
+// Android framework argument types are needed to compile method signatures only.
+def sdk = System.getenv('ANDROID_HOME') ?: System.getenv('ANDROID_SDK_ROOT')
+if (!sdk && rootProject.file('local.properties').exists()) {
+    def properties = new Properties()
+    rootProject.file('local.properties').withInputStream { properties.load(it) }
+    sdk = properties.getProperty('sdk.dir')
+}
+dependencies { compileOnly files("$sdk/platforms/android-35/android.jar") }
