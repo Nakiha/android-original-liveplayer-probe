@@ -123,6 +123,24 @@ adb shell am start -W -S -f 0x10008000 -n local.originalplayer.probe/.MainActivi
 
 将 `probe_hardware` 改为 `false` 运行软解对照。`-S` 只重启探针自身；请勿在需要持续观察官方客户端时同时启动探针播放。
 
+## Windows root 模拟器实验环境
+
+已在 Windows WHPX 上验证独立 AVD `LivePlayerRoot35`：Android 15 / API 35，Google APIs x86_64 镜像（非 Play Store，revision 9）。该镜像实测 `ro.debuggable=1`、`adb root` 后 `uid=0`，ABI 包含 x86_64 与 arm64-v8a，Native Bridge 为 `libndk_translation.so`。本地导入的官方 40.7.0 可启动、加载 `libttmplayer.so`，匹配版本的 Frida 17.24.3 已成功附加 Java 进程。尚未由此完成真实直播会话的 URL/配置采集。
+
+Google Play Store 镜像不能直接 `adb root`；AOSP 镜像虽然可 root，但不保证带 ARM 转译。镜像选择见 [Android 官方说明](https://developer.android.com/studio/run/managing-avds)。实际镜像的 root 和 ARM 兼容性仍须验证。
+
+有 Android SDK Command-line Tools 时，可按以下命令创建同名 AVD。新版 Android CLI 使用斜杠形式的包路径：
+
+```powershell
+android --no-metrics sdk install system-images/android-35/google_apis/x86_64
+avdmanager create avd -n LivePlayerRoot35 -k 'system-images;android-35;google_apis;x86_64' -d pixel_6
+.\start-root-emulator.ps1 -FridaServer C:/path/to/frida-server-17.24.3-android-x86_64
+```
+
+本机也可双击 `start-root-emulator.cmd`。启动器只操作指定 AVD，验证 root 后启动本地提供的 Frida server；客户端和 server 须匹配版本。未提供 server 时只启动 root 环境。原始 APK、Frida 二进制和个人登录状态不随仓库分发。
+
+模拟器适合入口参数和调用链探查。ARM 转译、虚拟 codec 和不同设备身份会影响行为与服务端下发；不能把模拟器的解码性能、硬解路径、功耗、卡顿或灰度配置当作原手机的测量结果。Frida 插桩本身也有开销。采集与重放仍需校验具体流和配置，而不是仅确认处在同一直播间。
+
 ## 验证记录
 
 | 检查 | 当前状态 |
