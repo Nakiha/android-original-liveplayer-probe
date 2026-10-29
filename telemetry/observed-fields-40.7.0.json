@@ -1,0 +1,3692 @@
+{
+  "schema_version": 1,
+  "source_version_code": 400701,
+  "field_inventory": {
+    "telemetry_app_info": {
+      "share_to_other": {
+        "str": 2
+      },
+      "render_view_visibility": {
+        "str": 2
+      },
+      "enter_live_source": {
+        "str": 2
+      },
+      "trigger_type": {
+        "str": 2
+      },
+      "render_view_context": {
+        "str": 2
+      },
+      "resolution": {
+        "str": 2
+      },
+      "stream_play_url": {
+        "str": 2
+      },
+      "screen_height": {
+        "int": 2
+      },
+      "last_mute_call_stack": {
+        "str": 2
+      },
+      "client_state": {
+        "str": 2
+      },
+      "stream_type": {
+        "str": 2
+      },
+      "ttlive_player": {
+        "str": 2
+      },
+      "global_surface_control": {
+        "str": 2
+      },
+      "render_view_is_show": {
+        "str": 2
+      },
+      "identifier": {
+        "str": 2
+      },
+      "screen_width": {
+        "int": 2
+      },
+      "device_id": {
+        "str": 2
+      },
+      "client_session_id": {
+        "str": 2
+      },
+      "live_player_is_mute": {
+        "str": 2
+      },
+      "video_live_manager": {
+        "str": 2
+      },
+      "surface_control_surface": {
+        "str": 2
+      },
+      "use_cellular_network_flag": {
+        "str": 2
+      },
+      "player_client_biz_domain": {
+        "str": 2
+      },
+      "use_scene": {
+        "str": 2
+      },
+      "render_view_parent_translate_x": {
+        "str": 2
+      },
+      "resolution_screen": {
+        "str": 2
+      },
+      "app_is_background": {
+        "str": 2
+      },
+      "error_code": {
+        "str": 2
+      },
+      "startup_resolution": {
+        "str": 2
+      },
+      "pre_resolution": {
+        "str": 2
+      },
+      "live_player_surface": {
+        "str": 2
+      },
+      "resolution_ui_name": {
+        "str": 2
+      },
+      "render_view_type": {
+        "str": 2
+      },
+      "client_is_mute": {
+        "str": 2
+      },
+      "surface_control_name": {
+        "str": 2
+      },
+      "cold_first_player": {
+        "str": 2
+      },
+      "cae_category": {
+        "str": 2
+      },
+      "live_player_network_type": {
+        "str": 2
+      },
+      "share_from_other": {
+        "str": 2
+      },
+      "video_size_width": {
+        "str": 2
+      },
+      "dynamic_texture_render": {
+        "str": 2
+      },
+      "stream_session_id": {
+        "str": 2
+      },
+      "is_reused": {
+        "str": 2
+      },
+      "resolution_match": {
+        "str": 2
+      },
+      "mute_call_list": {
+        "str": 2
+      },
+      "share_route": {
+        "str": 2
+      },
+      "render_view_parent_code": {
+        "str": 2
+      },
+      "render_view_parent_visibility": {
+        "str": 2
+      },
+      "orientation": {
+        "str": 2
+      },
+      "player_call_trace": {
+        "str": 2
+      },
+      "create_scene": {
+        "str": 2
+      },
+      "video_size_height": {
+        "str": 2
+      },
+      "player_client_associate_page": {
+        "str": 2
+      },
+      "resolutionPickStrategy": {
+        "str": 2
+      },
+      "resolution_strategy": {
+        "str": 2
+      },
+      "is_0vv": {
+        "str": 2
+      },
+      "resolution_strategy_info": {
+        "str": 2
+      },
+      "network_type": {
+        "str": 2
+      },
+      "preview_pre_pull_stream": {
+        "str": 2
+      },
+      "network_quality": {
+        "str": 2
+      },
+      "is_share_player": {
+        "str": 2
+      },
+      "client_code": {
+        "str": 2
+      },
+      "app_id": {
+        "int": 2
+      },
+      "app_version": {
+        "str": 2
+      },
+      "channel": {
+        "str": 2
+      },
+      "device_name": {
+        "str": 2
+      },
+      "did": {
+        "str": 2
+      },
+      "uid": {
+        "str": 2
+      },
+      "net_type": {
+        "str": 2
+      },
+      "net_des": {
+        "str": 2
+      },
+      "app_version_four": {
+        "int": 2
+      },
+      "live_base_new": {
+        "dict": 2
+      },
+      "render_view_scale_type": {
+        "str": 1
+      },
+      "render_view_margin_left": {
+        "str": 1
+      },
+      "render_view_width": {
+        "str": 1
+      },
+      "audio_capture_router": {
+        "str": 1
+      },
+      "render_view_margin_right": {
+        "str": 1
+      },
+      "render_view_parent_width": {
+        "str": 1
+      },
+      "render_view_gravity": {
+        "str": 1
+      },
+      "render_view_parent_height": {
+        "str": 1
+      },
+      "render_view_parent_translate_y": {
+        "str": 1
+      },
+      "use_new_layout": {
+        "str": 1
+      },
+      "audio_router": {
+        "str": 1
+      },
+      "render_view_height": {
+        "str": 1
+      },
+      "denoise_bound": {
+        "str": 1
+      },
+      "noise_estimation_mode": {
+        "str": 1
+      },
+      "surface_view_surface_is_valid": {
+        "str": 1
+      },
+      "render_view_margin_top": {
+        "str": 1
+      },
+      "render_view_margin_bottom": {
+        "str": 1
+      },
+      "surface_view_surface": {
+        "str": 1
+      },
+      "denoise_aed_scene": {
+        "str": 1
+      }
+    },
+    "native_observer": {
+      "abr_strategy": {
+        "str": 17
+      },
+      "alog_enable": {
+        "int": 17
+      },
+      "alog_level": {
+        "int": 17
+      },
+      "app_id": {
+        "int": 17
+      },
+      "app_is_background": {
+        "str": 17
+      },
+      "app_session_uuid": {
+        "str": 17
+      },
+      "app_version": {
+        "str": 17
+      },
+      "app_version_four": {
+        "int": 17
+      },
+      "audio_codec_name": {
+        "str": 17
+      },
+      "audio_codec_type": {
+        "str": 17
+      },
+      "background_status_change_count": {
+        "int": 17
+      },
+      "backup_to_origin": {
+        "int": 17
+      },
+      "buffering_end_ignore_video": {
+        "int": 17
+      },
+      "buffering_start_idl_time": {
+        "int": 17
+      },
+      "bytevc0_hardware_decode": {
+        "int": 1
+      },
+      "bytevc1_hardware_decode": {
+        "int": 1
+      },
+      "bytevc2_degrade_bytevc1": {
+        "int": 17
+      },
+      "cae_category": {
+        "str": 17
+      },
+      "cdn_ip": {
+        "str": 17
+      },
+      "cdn_play_url": {
+        "str": 17
+      },
+      "cert_verify_detail": {
+        "str": 17
+      },
+      "cert_verify_failed": {
+        "int": 17
+      },
+      "channel": {
+        "str": 17
+      },
+      "channel_id": {
+        "str": 17
+      },
+      "check_buffering_end_advance": {
+        "int": 17
+      },
+      "chip_board": {
+        "str": 17
+      },
+      "client_code": {
+        "str": 17
+      },
+      "client_is_mute": {
+        "str": 17
+      },
+      "client_session_id": {
+        "str": 17
+      },
+      "client_state": {
+        "str": 17
+      },
+      "client_timestamp": {
+        "int": 17
+      },
+      "codec_name": {
+        "str": 17
+      },
+      "codec_type": {
+        "str": 17
+      },
+      "cold_first_player": {
+        "str": 17
+      },
+      "color_space": {
+        "str": 17
+      },
+      "color_trc": {
+        "str": 17
+      },
+      "common_tag": {
+        "str": 17
+      },
+      "create_scene": {
+        "str": 17
+      },
+      "default_enable_old_features": {
+        "int": 17
+      },
+      "default_res_bitrate": {
+        "int": 17
+      },
+      "device_id": {
+        "str": 17
+      },
+      "device_name": {
+        "str": 17
+      },
+      "did": {
+        "str": 17
+      },
+      "disable_video_render": {
+        "int": 17
+      },
+      "duration_of_start_auto_speed": {
+        "int": 17
+      },
+      "dynamic_texture_render": {
+        "str": 17
+      },
+      "enable_change_start_play_buffer_advance": {
+        "int": 17
+      },
+      "enable_liveio_play": {
+        "int": 17
+      },
+      "enable_low_latency_flv": {
+        "int": 17
+      },
+      "enable_low_res_startplay": {
+        "int": 17
+      },
+      "enable_lower_res": {
+        "int": 17
+      },
+      "enable_pcdn_rts": {
+        "int": 17
+      },
+      "enable_preplay_smooth_switch": {
+        "bool": 17
+      },
+      "enable_resolution_auto_degrade": {
+        "int": 17
+      },
+      "enable_rtc_play": {
+        "int": 17
+      },
+      "enable_strategy_performance_optimization": {
+        "int": 17
+      },
+      "enter_live_source": {
+        "str": 17
+      },
+      "error_code": {
+        "str": 17
+      },
+      "event_index": {
+        "int": 17
+      },
+      "event_key": {
+        "str": 17
+      },
+      "event_key_index": {
+        "int": 17
+      },
+      "external_res": {
+        "str": 17
+      },
+      "fallback_from_hdr_to_sdr": {
+        "int": 17
+      },
+      "fallback_type": {
+        "int": 17
+      },
+      "fast_open_gop_cache": {
+        "int": 17
+      },
+      "global_surface_control": {
+        "str": 17
+      },
+      "hardware_decode": {
+        "int": 17
+      },
+      "has_abr_info": {
+        "str": 17
+      },
+      "headers_host": {
+        "str": 17
+      },
+      "height": {
+        "int": 17
+      },
+      "identifier": {
+        "str": 17
+      },
+      "in_main_looper": {
+        "int": 17
+      },
+      "is_0vv": {
+        "str": 17
+      },
+      "is_background": {
+        "int": 17
+      },
+      "is_eventsdk_fallback": {
+        "bool": 17
+      },
+      "is_preplay": {
+        "int": 17
+      },
+      "is_preview": {
+        "int": 17
+      },
+      "is_reused": {
+        "str": 17
+      },
+      "is_share_player": {
+        "str": 17
+      },
+      "is_too_large_av_diff": {
+        "int": 17
+      },
+      "last_mute_call_stack": {
+        "str": 17
+      },
+      "link_info": {
+        "str": 17
+      },
+      "live_base_new": {
+        "dict": 17
+      },
+      "live_player_is_mute": {
+        "str": 17
+      },
+      "live_player_network_type": {
+        "str": 17
+      },
+      "live_player_surface": {
+        "str": 17
+      },
+      "live_sdk_version": {
+        "str": 17
+      },
+      "live_stream_enter_action": {
+        "str": 17
+      },
+      "live_stream_enter_method": {
+        "str": 17
+      },
+      "live_stream_enter_method_subtag": {
+        "str": 17
+      },
+      "live_stream_session_id": {
+        "str": 17
+      },
+      "live_stream_strategy_smooth_switch_probe_bitrate": {
+        "str": 17
+      },
+      "live_stream_strategy_startup_bitrate_predict": {
+        "str": 17
+      },
+      "live_suggest_fastopenduration": {
+        "int": 1
+      },
+      "live_vv_session_id": {
+        "str": 17
+      },
+      "liveio_p2p": {
+        "int": 17
+      },
+      "liveio_p2p_upload": {
+        "int": 17
+      },
+      "liveio_play": {
+        "int": 17
+      },
+      "liveplayer_hash_code": {
+        "str": 17
+      },
+      "log_total_count_when_playing": {
+        "int": 3
+      },
+      "multipath_network_type": {
+        "str": 17
+      },
+      "mute_audio": {
+        "int": 17
+      },
+      "mute_call_list": {
+        "str": 17
+      },
+      "net_des": {
+        "str": 17
+      },
+      "net_type": {
+        "str": 17
+      },
+      "network_quality": {
+        "str": 17
+      },
+      "network_type": {
+        "str": 17
+      },
+      "new_liveplayer": {
+        "int": 17
+      },
+      "orientation": {
+        "str": 17
+      },
+      "origin_url": {
+        "str": 3
+      },
+      "os": {
+        "str": 17
+      },
+      "pcdn_isolation_name": {
+        "str": 17
+      },
+      "pcdn_rts_play": {
+        "int": 17
+      },
+      "pcdn_rts_sdk_available": {
+        "int": 17
+      },
+      "play_format": {
+        "str": 17
+      },
+      "play_protocol": {
+        "str": 17
+      },
+      "play_time_axis": {
+        "int": 17
+      },
+      "player_call_trace": {
+        "str": 17
+      },
+      "player_client_associate_page": {
+        "str": 17
+      },
+      "player_client_biz_domain": {
+        "str": 17
+      },
+      "player_sdk_version": {
+        "str": 17
+      },
+      "player_volume_setting": {
+        "int": 17
+      },
+      "pre_resolution": {
+        "str": 17
+      },
+      "preplay_type": {
+        "int": 17
+      },
+      "preview_pre_pull_stream": {
+        "str": 17
+      },
+      "product_line": {
+        "str": 17
+      },
+      "project_key": {
+        "str": 17
+      },
+      "radio_mode_change_count": {
+        "int": 17
+      },
+      "redirect_ip": {
+        "str": 17
+      },
+      "redirect_url": {
+        "str": 17
+      },
+      "render_view_context": {
+        "str": 17
+      },
+      "render_view_is_show": {
+        "str": 17
+      },
+      "render_view_parent_code": {
+        "str": 17
+      },
+      "render_view_parent_translate_x": {
+        "str": 17
+      },
+      "render_view_parent_visibility": {
+        "str": 17
+      },
+      "render_view_type": {
+        "str": 17
+      },
+      "render_view_visibility": {
+        "str": 17
+      },
+      "report_sdk_type": {
+        "int": 17
+      },
+      "report_version": {
+        "str": 17
+      },
+      "request_id": {
+        "str": 17
+      },
+      "request_url": {
+        "str": 17
+      },
+      "resolution": {
+        "str": 17
+      },
+      "resolutionPickStrategy": {
+        "str": 17
+      },
+      "resolution_match": {
+        "str": 17
+      },
+      "resolution_screen": {
+        "str": 17
+      },
+      "resolution_strategy": {
+        "str": 17
+      },
+      "resolution_ui_name": {
+        "str": 17
+      },
+      "rtc_play_fallback": {
+        "int": 17
+      },
+      "rule_ids": {
+        "str": 3
+      },
+      "screen_height": {
+        "int": 17
+      },
+      "screen_width": {
+        "int": 17
+      },
+      "sei_delay": {
+        "int": 17
+      },
+      "sei_source": {
+        "str": 17
+      },
+      "sei_ver": {
+        "int": 17
+      },
+      "set_surface_cost": {
+        "int": 6
+      },
+      "settings_info": {
+        "str": 17
+      },
+      "settings_res": {
+        "str": 17
+      },
+      "share_from_other": {
+        "str": 17
+      },
+      "share_route": {
+        "str": 17
+      },
+      "share_to_other": {
+        "str": 17
+      },
+      "sr_height": {
+        "int": 17
+      },
+      "sr_width": {
+        "int": 17
+      },
+      "stall_count_rad": {
+        "int": 17
+      },
+      "stall_retry_time_interval": {
+        "int": 17
+      },
+      "start_direct_after_prepared": {
+        "int": 17
+      },
+      "start_play_buffer_threshold": {
+        "int": 17
+      },
+      "start_play_time": {
+        "int": 3
+      },
+      "startup_resolution": {
+        "str": 17
+      },
+      "stream_data": {
+        "str": 1
+      },
+      "stream_play_url": {
+        "str": 17
+      },
+      "stream_session_id": {
+        "str": 17
+      },
+      "stream_type": {
+        "str": 17
+      },
+      "sub_scene": {
+        "int": 17
+      },
+      "suggest_format": {
+        "str": 7
+      },
+      "suggest_protocol": {
+        "str": 7
+      },
+      "surface_control_name": {
+        "str": 17
+      },
+      "surface_control_surface": {
+        "str": 17
+      },
+      "texturerender_error": {
+        "int": 17
+      },
+      "texturerender_error_msg": {
+        "str": 17
+      },
+      "transport_type": {
+        "str": 17
+      },
+      "trigger_type": {
+        "str": 17
+      },
+      "ttlive_player": {
+        "str": 17
+      },
+      "ttnet_nqe_info": {
+        "str": 17
+      },
+      "udp_probe_info": {
+        "str": 17
+      },
+      "udp_probe_result": {
+        "int": 17
+      },
+      "uid": {
+        "str": 17
+      },
+      "use_cellular_network_flag": {
+        "str": 17
+      },
+      "use_scene": {
+        "str": 17
+      },
+      "used_texturerender": {
+        "int": 17
+      },
+      "video_live_manager": {
+        "str": 17
+      },
+      "video_size_height": {
+        "str": 17
+      },
+      "video_size_width": {
+        "str": 17
+      },
+      "volume_setting": {
+        "int": 2,
+        "float": 15
+      },
+      "width": {
+        "int": 17
+      },
+      "x_client_ip": {
+        "str": 17
+      },
+      "x_server_ip": {
+        "str": 17
+      },
+      "enable_open_other_codec": {
+        "int": 2
+      },
+      "enable_vrr": {
+        "int": 2
+      },
+      "last_session_id": {
+        "str": 5
+      },
+      "major_anchor_level": {
+        "str": 5
+      },
+      "pull_protocol": {
+        "str": 5
+      },
+      "reason": {
+        "int": 8
+      },
+      "render_type": {
+        "int": 2
+      },
+      "session_elapsed_time_ms": {
+        "int": 2
+      },
+      "stream_version": {
+        "int": 6
+      },
+      "UsePreconnectIp": {
+        "int": 3
+      },
+      "UseRedirectedIp": {
+        "int": 3
+      },
+      "abr_check_enhance": {
+        "int": 3
+      },
+      "audio_buffer_time": {
+        "int": 9
+      },
+      "audio_device_open_end": {
+        "int": 4
+      },
+      "audio_device_open_start": {
+        "int": 4
+      },
+      "audio_first_pkt_pos": {
+        "int": 4
+      },
+      "audio_first_pkt_pts": {
+        "int": 4
+      },
+      "container_fps": {
+        "int": 8
+      },
+      "download_speed": {
+        "int": 4
+      },
+      "drm_get_secret_key_end": {
+        "int": 3
+      },
+      "drop_audio_cost": {
+        "int": 4
+      },
+      "drop_audio_pts_diff": {
+        "int": 4
+      },
+      "enable_tcp_fast_open": {
+        "int": 3
+      },
+      "evaluator_symbol": {
+        "str": 4
+      },
+      "find_stream_info_end": {
+        "int": 4
+      },
+      "find_stream_info_start": {
+        "int": 4
+      },
+      "first_audio_frame_decode_end": {
+        "int": 4
+      },
+      "first_audio_frame_decode_start": {
+        "int": 2
+      },
+      "first_audio_frame_end": {
+        "int": 3
+      },
+      "first_audio_package_end": {
+        "int": 4
+      },
+      "first_frame_from_player_core": {
+        "int": 3
+      },
+      "first_frame_render_end": {
+        "int": 4
+      },
+      "first_frame_stage_tracker": {
+        "int": 4
+      },
+      "first_play_time": {
+        "int": 1
+      },
+      "first_sei_delay": {
+        "int": 4
+      },
+      "first_video_frame_decode_end": {
+        "int": 4
+      },
+      "first_video_frame_decode_start": {
+        "int": 2
+      },
+      "first_video_frame_end": {
+        "int": 2
+      },
+      "first_video_frame_send_outlet_time": {
+        "int": 4
+      },
+      "first_video_package_end": {
+        "int": 4
+      },
+      "hit_cache": {
+        "int": 1
+      },
+      "hit_node_optimize": {
+        "int": 4
+      },
+      "http_open_start": {
+        "int": 3
+      },
+      "http_req_finish_time": {
+        "int": 4
+      },
+      "http_res_finish_time": {
+        "int": 4
+      },
+      "ipv6_probe_result": {
+        "int": 3
+      },
+      "is_free_flow": {
+        "int": 3
+      },
+      "last_retry_end": {
+        "int": 1
+      },
+      "optimize_backup_ips": {
+        "str": 1,
+        "list": 2
+      },
+      "player_dns_analysis_end": {
+        "int": 4
+      },
+      "pre_connect": {
+        "int": 3
+      },
+      "prepare_block_end": {
+        "int": 4
+      },
+      "prepare_end": {
+        "int": 4
+      },
+      "preplay_enter_room_timestamp": {
+        "int": 3
+      },
+      "request_cdn_cached": {
+        "int": 3
+      },
+      "request_time_for_cdn": {
+        "int": 3
+      },
+      "request_time_to_source": {
+        "int": 3
+      },
+      "response_header_Via": {
+        "str": 3
+      },
+      "response_header_X-Server-IP": {
+        "str": 3
+      },
+      "rtc_answer_recv_end": {
+        "int": 2
+      },
+      "rtc_ice_connected_time": {
+        "int": 2
+      },
+      "rtc_inited_end": {
+        "int": 2
+      },
+      "rtc_offer_send_end": {
+        "int": 2
+      },
+      "rtc_preload_result": {
+        "int": 2
+      },
+      "rtc_start_end": {
+        "int": 3
+      },
+      "rtc_tls_handshake_end": {
+        "int": 2
+      },
+      "rtc_use_sdk_dns": {
+        "int": 2
+      },
+      "sdk_dns_analysis_end": {
+        "int": 4
+      },
+      "set_surface_time": {
+        "int": 3
+      },
+      "socket_create_end": {
+        "int": 3
+      },
+      "stall_time": {
+        "int": 8
+      },
+      "start": {
+        "int": 4
+      },
+      "tcp_connect_end": {
+        "int": 4
+      },
+      "tcp_first_package_end": {
+        "int": 4
+      },
+      "tfo_fall_back_time": {
+        "int": 3
+      },
+      "tfo_success": {
+        "int": 3
+      },
+      "total_cost": {
+        "int": 3
+      },
+      "trans_open_start": {
+        "int": 3
+      },
+      "trans_params_bandwidth": {
+        "int": 3
+      },
+      "trans_params_bandwidth_decision": {
+        "int": 3
+      },
+      "trans_strategy_params": {
+        "str": 3
+      },
+      "used_drm": {
+        "int": 3
+      },
+      "video_buffer_time": {
+        "int": 9
+      },
+      "video_device_open_end": {
+        "int": 4
+      },
+      "video_device_open_start": {
+        "int": 4
+      },
+      "video_device_wait_end": {
+        "int": 4
+      },
+      "video_device_wait_start": {
+        "int": 4
+      },
+      "video_first_pkt_pos": {
+        "int": 4
+      },
+      "video_first_pkt_pts": {
+        "int": 4
+      },
+      "video_param_send_outlet_time": {
+        "int": 4
+      },
+      "video_render_type": {
+        "int": 4
+      },
+      "RedirectedPort": {
+        "str": 2
+      },
+      "code": {
+        "int": 6
+      },
+      "error_msg": {
+        "str": 3
+      },
+      "first_audio_packet_dts": {
+        "int": 2
+      },
+      "first_audio_packet_dts_rollback": {
+        "int": 2
+      },
+      "is_stream_received": {
+        "int": 3
+      },
+      "is_vv_first_frame": {
+        "bool": 2
+      },
+      "node_optimize_info": {
+        "str": 2
+      },
+      "open_dns_optimizer": {
+        "int": 2
+      },
+      "pre302_trace": {
+        "str": 2
+      },
+      "pre_redirect_ip": {
+        "str": 2
+      },
+      "previous_audio_packet_dts": {
+        "int": 2
+      },
+      "retry": {
+        "int": 2
+      },
+      "rtm_data_first_audio_frame_decode_start": {
+        "int": 2
+      },
+      "rtm_data_first_audio_frame_end": {
+        "int": 2
+      },
+      "rtm_data_first_audio_packet": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_decode_start": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_decoded": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_end": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_rendered": {
+        "int": 2
+      },
+      "rtm_data_first_video_packet": {
+        "int": 2
+      },
+      "rtm_data_ice_connect_start": {
+        "int": 2
+      },
+      "rtm_data_ice_connected": {
+        "int": 2
+      },
+      "rtm_first_frame_time_info": {
+        "str": 2
+      },
+      "rtm_init_end": {
+        "int": 2
+      },
+      "rtm_signal_answer_received": {
+        "int": 2
+      },
+      "rtm_signal_answer_updated": {
+        "int": 2
+      },
+      "rtm_signal_dns_analysis_end": {
+        "int": 2
+      },
+      "rtm_signal_offer_created": {
+        "int": 2
+      },
+      "rtm_signal_offer_sent": {
+        "int": 2
+      },
+      "rtm_signal_transport_connected": {
+        "int": 2
+      },
+      "sdk_dns_end": {
+        "int": 2
+      },
+      "sdk_session_start": {
+        "int": 3
+      },
+      "session_succ_elapse": {
+        "int": 3
+      },
+      "set_surface": {
+        "int": 3
+      },
+      "start_time": {
+        "int": 2
+      },
+      "wait_surface_elapse": {
+        "int": 3
+      },
+      "audio_decoder_buffer_time": {
+        "int": 5
+      },
+      "audio_render_buffer_time": {
+        "int": 5
+      },
+      "decoder_fps": {
+        "int": 5
+      },
+      "render_fps": {
+        "float": 5
+      },
+      "type": {
+        "str": 5
+      },
+      "video_decoder_buffer_time": {
+        "int": 5
+      },
+      "video_render_buffer_time": {
+        "int": 5
+      },
+      "aes_boost_cfg_type": {
+        "int": 1
+      },
+      "aes_boost_group_id": {
+        "int": 1
+      },
+      "aes_boost_not_use_reason": {
+        "int": 1
+      },
+      "aes_boost_used": {
+        "int": 1
+      },
+      "arhq_alg_type": {
+        "int": 1
+      },
+      "arhq_used": {
+        "int": 1
+      },
+      "background_watching_time": {
+        "int": 1
+      },
+      "br_mean": {
+        "int": 1
+      },
+      "br_scale": {
+        "int": 1
+      },
+      "cellular_play_time": {
+        "int": 1
+      },
+      "cellular_total_download_size": {
+        "int": 1
+      },
+      "change_session_reason": {
+        "str": 1
+      },
+      "ct_m_b": {
+        "str": 1
+      },
+      "enable_use_sdr2hdr": {
+        "int": 1
+      },
+      "first_stall_duration": {
+        "int": 1
+      },
+      "first_stall_time": {
+        "int": 1
+      },
+      "http_flow_size": {
+        "int": 1
+      },
+      "http_patch_dts_size": {
+        "int": 1
+      },
+      "http_substream_size": {
+        "int": 1
+      },
+      "httpio_play_time": {
+        "int": 1
+      },
+      "index": {
+        "int": 1
+      },
+      "initial_play_time": {
+        "int": 1
+      },
+      "inner_play_time": {
+        "int": 1
+      },
+      "inner_preplay_play_time": {
+        "int": 1
+      },
+      "is_first_play": {
+        "bool": 1
+      },
+      "is_flow_vision": {
+        "int": 1
+      },
+      "is_waiting": {
+        "int": 1
+      },
+      "network_timeout": {
+        "int": 1
+      },
+      "nnsr_enabled": {
+        "int": 1
+      },
+      "p2p_flow_size": {
+        "int": 1
+      },
+      "p2p_flv_detail": {
+        "str": 1
+      },
+      "p2p_mobile_flow_size": {
+        "int": 1
+      },
+      "p2pio_play_time": {
+        "int": 1
+      },
+      "play_size": {
+        "int": 1
+      },
+      "play_time": {
+        "int": 1
+      },
+      "play_time_on_no_frame": {
+        "int": 1
+      },
+      "playing_info": {
+        "dict": 1
+      },
+      "preview_play_time": {
+        "int": 1
+      },
+      "preview_preplay_play_time": {
+        "int": 1
+      },
+      "render_fail_type": {
+        "int": 3
+      },
+      "room_play_time_ms": {
+        "int": 1
+      },
+      "sdk_params": {
+        "str": 1
+      },
+      "sdk_session_stop": {
+        "int": 1
+      },
+      "sdr2hdr_not_use_reason": {
+        "int": 1
+      },
+      "sdr2hdr_used": {
+        "int": 1
+      },
+      "segement_count": {
+        "int": 1
+      },
+      "segement_request": {
+        "list": 1
+      },
+      "session_duration_time": {
+        "int": 1
+      },
+      "sharpen_alg_type": {
+        "int": 1
+      },
+      "sharpen_cfg_reason": {
+        "str": 1
+      },
+      "sharpen_cfg_type": {
+        "int": 1
+      },
+      "sharpen_enabled": {
+        "int": 1
+      },
+      "sharpen_level": {
+        "int": 1
+      },
+      "sharpen_not_use_reason": {
+        "int": 1
+      },
+      "sharpen_used": {
+        "int": 1
+      },
+      "small_window_play_time": {
+        "int": 1
+      },
+      "socket_err_code": {
+        "int": 3
+      },
+      "socket_err_type": {
+        "int": 3
+      },
+      "source_resolution": {
+        "str": 1
+      },
+      "sr_alg_type": {
+        "int": 1
+      },
+      "sr_cfg_reason": {
+        "str": 1
+      },
+      "sr_cfg_type": {
+        "int": 1
+      },
+      "sr_not_use_reason": {
+        "int": 1
+      },
+      "sr_scale_type": {
+        "int": 1
+      },
+      "sr_scale_type_float": {
+        "int": 1
+      },
+      "sr_sharp_level": {
+        "int": 1
+      },
+      "sr_used": {
+        "int": 1
+      },
+      "stall_count": {
+        "int": 1
+      },
+      "stop_time": {
+        "int": 1
+      },
+      "svc_play": {
+        "int": 1
+      },
+      "switch_cellular_detail": {
+        "str": 1
+      },
+      "switch_cellular_reason": {
+        "int": 1
+      },
+      "switch_cellular_result": {
+        "int": 1
+      },
+      "switch_default_detail": {
+        "str": 1
+      },
+      "switch_default_reason": {
+        "int": 1
+      },
+      "switch_default_result": {
+        "int": 1
+      },
+      "switch_reason": {
+        "str": 1
+      },
+      "target_resolution": {
+        "str": 1
+      },
+      "total_download_size": {
+        "int": 1
+      },
+      "use_sharpen": {
+        "int": 1
+      },
+      "video_render_change_count": {
+        "int": 1
+      },
+      "view_height": {
+        "int": 1
+      },
+      "view_width": {
+        "int": 1
+      },
+      "vvc_report_info": {
+        "str": 1
+      },
+      "wait_time": {
+        "int": 1
+      },
+      "playing_info.playing_http_flow_size": {
+        "int": 1
+      },
+      "playing_info.playing_p2p_flow_size": {
+        "int": 1
+      },
+      "playing_info.playing_p2p_mobile_flow_size": {
+        "int": 1
+      },
+      "auto_res": {
+        "str": 11
+      },
+      "info": {
+        "str": 1
+      },
+      "spspps": {
+        "str": 1
+      },
+      "player_open_input_start": {
+        "int": 1
+      },
+      "audio_capture_router": {
+        "str": 5
+      },
+      "audio_router": {
+        "str": 5
+      },
+      "denoise_aed_scene": {
+        "str": 5
+      },
+      "denoise_bound": {
+        "str": 5
+      },
+      "noise_estimation_mode": {
+        "str": 5
+      },
+      "render_view_gravity": {
+        "str": 5
+      },
+      "render_view_height": {
+        "str": 5
+      },
+      "render_view_margin_bottom": {
+        "str": 5
+      },
+      "render_view_margin_left": {
+        "str": 5
+      },
+      "render_view_margin_right": {
+        "str": 5
+      },
+      "render_view_margin_top": {
+        "str": 5
+      },
+      "render_view_parent_height": {
+        "str": 5
+      },
+      "render_view_parent_translate_y": {
+        "str": 5
+      },
+      "render_view_parent_width": {
+        "str": 5
+      },
+      "render_view_scale_type": {
+        "str": 5
+      },
+      "render_view_width": {
+        "str": 5
+      },
+      "surface_view_surface": {
+        "str": 5
+      },
+      "surface_view_surface_is_valid": {
+        "str": 5
+      },
+      "use_new_layout": {
+        "str": 5
+      },
+      "audio_buffer_time_stall_end": {
+        "int": 1
+      },
+      "audio_buffer_time_stall_start": {
+        "int": 1
+      },
+      "last_res": {
+        "str": 1
+      },
+      "recover_reason": {
+        "int": 1
+      },
+      "stall_end": {
+        "int": 1
+      },
+      "stall_start": {
+        "int": 1
+      },
+      "stall_start_sub_scene": {
+        "int": 1
+      },
+      "stall_start_ver": {
+        "int": 1
+      },
+      "video_buffer_time_stall_end": {
+        "int": 1
+      },
+      "video_buffer_time_stall_start": {
+        "int": 1
+      }
+    },
+    "business_client_entry": {
+      "abr_strategy": {
+        "str": 16
+      },
+      "alog_enable": {
+        "int": 16
+      },
+      "alog_level": {
+        "int": 16
+      },
+      "app_id": {
+        "int": 16
+      },
+      "app_is_background": {
+        "str": 16
+      },
+      "app_session_uuid": {
+        "str": 16
+      },
+      "app_version": {
+        "str": 16
+      },
+      "app_version_four": {
+        "int": 16
+      },
+      "audio_codec_name": {
+        "str": 16
+      },
+      "audio_codec_type": {
+        "str": 16
+      },
+      "background_status_change_count": {
+        "int": 16
+      },
+      "backup_to_origin": {
+        "int": 16
+      },
+      "buffering_end_ignore_video": {
+        "int": 16
+      },
+      "buffering_start_idl_time": {
+        "int": 16
+      },
+      "bytevc0_hardware_decode": {
+        "int": 1
+      },
+      "bytevc1_hardware_decode": {
+        "int": 1
+      },
+      "bytevc2_degrade_bytevc1": {
+        "int": 16
+      },
+      "cae_category": {
+        "str": 16
+      },
+      "cdn_ip": {
+        "str": 16
+      },
+      "cdn_play_url": {
+        "str": 16
+      },
+      "cert_verify_detail": {
+        "str": 16
+      },
+      "cert_verify_failed": {
+        "int": 16
+      },
+      "channel": {
+        "str": 16
+      },
+      "channel_id": {
+        "str": 16
+      },
+      "check_buffering_end_advance": {
+        "int": 16
+      },
+      "chip_board": {
+        "str": 16
+      },
+      "client_code": {
+        "str": 16
+      },
+      "client_is_mute": {
+        "str": 16
+      },
+      "client_session_id": {
+        "str": 16
+      },
+      "client_state": {
+        "str": 16
+      },
+      "client_timestamp": {
+        "int": 16
+      },
+      "codec_name": {
+        "str": 16
+      },
+      "codec_type": {
+        "str": 16
+      },
+      "cold_first_player": {
+        "str": 16
+      },
+      "color_space": {
+        "str": 16
+      },
+      "color_trc": {
+        "str": 16
+      },
+      "common_tag": {
+        "str": 16
+      },
+      "create_scene": {
+        "str": 16
+      },
+      "default_enable_old_features": {
+        "int": 16
+      },
+      "default_res_bitrate": {
+        "int": 16
+      },
+      "device_id": {
+        "str": 16
+      },
+      "device_name": {
+        "str": 16
+      },
+      "did": {
+        "str": 16
+      },
+      "disable_video_render": {
+        "int": 16
+      },
+      "duration_of_start_auto_speed": {
+        "int": 16
+      },
+      "dynamic_texture_render": {
+        "str": 16
+      },
+      "enable_change_start_play_buffer_advance": {
+        "int": 16
+      },
+      "enable_liveio_play": {
+        "int": 16
+      },
+      "enable_low_latency_flv": {
+        "int": 16
+      },
+      "enable_low_res_startplay": {
+        "int": 16
+      },
+      "enable_lower_res": {
+        "int": 16
+      },
+      "enable_pcdn_rts": {
+        "int": 16
+      },
+      "enable_preplay_smooth_switch": {
+        "bool": 16
+      },
+      "enable_resolution_auto_degrade": {
+        "int": 16
+      },
+      "enable_rtc_play": {
+        "int": 16
+      },
+      "enable_strategy_performance_optimization": {
+        "int": 16
+      },
+      "enter_live_source": {
+        "str": 16
+      },
+      "error_code": {
+        "str": 16
+      },
+      "event_index": {
+        "int": 16
+      },
+      "event_key": {
+        "str": 16
+      },
+      "event_key_index": {
+        "int": 16
+      },
+      "external_res": {
+        "str": 16
+      },
+      "fallback_from_hdr_to_sdr": {
+        "int": 16
+      },
+      "fallback_type": {
+        "int": 16
+      },
+      "fast_open_gop_cache": {
+        "int": 16
+      },
+      "global_surface_control": {
+        "str": 16
+      },
+      "hardware_decode": {
+        "int": 16
+      },
+      "has_abr_info": {
+        "str": 16
+      },
+      "headers_host": {
+        "str": 16
+      },
+      "height": {
+        "int": 16
+      },
+      "identifier": {
+        "str": 16
+      },
+      "in_main_looper": {
+        "int": 16
+      },
+      "is_0vv": {
+        "str": 16
+      },
+      "is_background": {
+        "int": 16
+      },
+      "is_eventsdk_fallback": {
+        "bool": 16
+      },
+      "is_preplay": {
+        "int": 16
+      },
+      "is_preview": {
+        "int": 16
+      },
+      "is_reused": {
+        "str": 16
+      },
+      "is_share_player": {
+        "str": 16
+      },
+      "is_too_large_av_diff": {
+        "int": 16
+      },
+      "last_mute_call_stack": {
+        "str": 16
+      },
+      "link_info": {
+        "str": 16
+      },
+      "live_base_new": {
+        "dict": 16
+      },
+      "live_player_is_mute": {
+        "str": 16
+      },
+      "live_player_network_type": {
+        "str": 16
+      },
+      "live_player_surface": {
+        "str": 16
+      },
+      "live_sdk_version": {
+        "str": 16
+      },
+      "live_stream_enter_action": {
+        "str": 16
+      },
+      "live_stream_enter_method": {
+        "str": 16
+      },
+      "live_stream_enter_method_subtag": {
+        "str": 16
+      },
+      "live_stream_session_id": {
+        "str": 16
+      },
+      "live_stream_strategy_smooth_switch_probe_bitrate": {
+        "str": 16
+      },
+      "live_stream_strategy_startup_bitrate_predict": {
+        "str": 16
+      },
+      "live_suggest_fastopenduration": {
+        "int": 1
+      },
+      "live_vv_session_id": {
+        "str": 16
+      },
+      "liveio_p2p": {
+        "int": 16
+      },
+      "liveio_p2p_upload": {
+        "int": 16
+      },
+      "liveio_play": {
+        "int": 16
+      },
+      "liveplayer_hash_code": {
+        "str": 16
+      },
+      "log_total_count_when_playing": {
+        "int": 3
+      },
+      "multipath_network_type": {
+        "str": 16
+      },
+      "mute_audio": {
+        "int": 16
+      },
+      "mute_call_list": {
+        "str": 16
+      },
+      "net_des": {
+        "str": 16
+      },
+      "net_type": {
+        "str": 16
+      },
+      "network_quality": {
+        "str": 16
+      },
+      "network_type": {
+        "str": 16
+      },
+      "new_liveplayer": {
+        "int": 16
+      },
+      "orientation": {
+        "str": 16
+      },
+      "origin_url": {
+        "str": 3
+      },
+      "os": {
+        "str": 16
+      },
+      "pcdn_isolation_name": {
+        "str": 16
+      },
+      "pcdn_rts_play": {
+        "int": 16
+      },
+      "pcdn_rts_sdk_available": {
+        "int": 16
+      },
+      "play_format": {
+        "str": 16
+      },
+      "play_protocol": {
+        "str": 16
+      },
+      "play_time_axis": {
+        "int": 16
+      },
+      "player_call_trace": {
+        "str": 16
+      },
+      "player_client_associate_page": {
+        "str": 16
+      },
+      "player_client_biz_domain": {
+        "str": 16
+      },
+      "player_sdk_version": {
+        "str": 16
+      },
+      "player_volume_setting": {
+        "int": 16
+      },
+      "pre_resolution": {
+        "str": 16
+      },
+      "preplay_type": {
+        "int": 16
+      },
+      "preview_pre_pull_stream": {
+        "str": 16
+      },
+      "product_line": {
+        "str": 16
+      },
+      "project_key": {
+        "str": 16
+      },
+      "radio_mode_change_count": {
+        "int": 16
+      },
+      "redirect_ip": {
+        "str": 16
+      },
+      "redirect_url": {
+        "str": 16
+      },
+      "render_view_context": {
+        "str": 16
+      },
+      "render_view_is_show": {
+        "str": 16
+      },
+      "render_view_parent_code": {
+        "str": 16
+      },
+      "render_view_parent_translate_x": {
+        "str": 16
+      },
+      "render_view_parent_visibility": {
+        "str": 16
+      },
+      "render_view_type": {
+        "str": 16
+      },
+      "render_view_visibility": {
+        "str": 16
+      },
+      "report_sdk_type": {
+        "int": 16
+      },
+      "report_version": {
+        "str": 16
+      },
+      "request_id": {
+        "str": 16
+      },
+      "request_url": {
+        "str": 16
+      },
+      "resolution": {
+        "str": 16
+      },
+      "resolutionPickStrategy": {
+        "str": 16
+      },
+      "resolution_match": {
+        "str": 16
+      },
+      "resolution_screen": {
+        "str": 16
+      },
+      "resolution_strategy": {
+        "str": 16
+      },
+      "resolution_ui_name": {
+        "str": 16
+      },
+      "rtc_play_fallback": {
+        "int": 16
+      },
+      "rule_ids": {
+        "str": 3
+      },
+      "screen_height": {
+        "int": 16
+      },
+      "screen_width": {
+        "int": 16
+      },
+      "sei_delay": {
+        "int": 16
+      },
+      "sei_source": {
+        "str": 16
+      },
+      "sei_ver": {
+        "int": 16
+      },
+      "set_surface_cost": {
+        "int": 6
+      },
+      "settings_info": {
+        "str": 16
+      },
+      "settings_res": {
+        "str": 16
+      },
+      "share_from_other": {
+        "str": 16
+      },
+      "share_route": {
+        "str": 16
+      },
+      "share_to_other": {
+        "str": 16
+      },
+      "sr_height": {
+        "int": 16
+      },
+      "sr_width": {
+        "int": 16
+      },
+      "stall_count_rad": {
+        "int": 16
+      },
+      "stall_retry_time_interval": {
+        "int": 16
+      },
+      "start_direct_after_prepared": {
+        "int": 16
+      },
+      "start_play_buffer_threshold": {
+        "int": 16
+      },
+      "start_play_time": {
+        "int": 3
+      },
+      "startup_resolution": {
+        "str": 16
+      },
+      "stream_data": {
+        "str": 1
+      },
+      "stream_play_url": {
+        "str": 16
+      },
+      "stream_session_id": {
+        "str": 16
+      },
+      "stream_type": {
+        "str": 16
+      },
+      "sub_scene": {
+        "int": 16
+      },
+      "suggest_format": {
+        "str": 7
+      },
+      "suggest_protocol": {
+        "str": 7
+      },
+      "surface_control_name": {
+        "str": 16
+      },
+      "surface_control_surface": {
+        "str": 16
+      },
+      "texturerender_error": {
+        "int": 16
+      },
+      "texturerender_error_msg": {
+        "str": 16
+      },
+      "transport_type": {
+        "str": 16
+      },
+      "trigger_type": {
+        "str": 16
+      },
+      "ttlive_player": {
+        "str": 16
+      },
+      "ttnet_nqe_info": {
+        "str": 16
+      },
+      "udp_probe_info": {
+        "str": 16
+      },
+      "udp_probe_result": {
+        "int": 16
+      },
+      "uid": {
+        "str": 16
+      },
+      "use_cellular_network_flag": {
+        "str": 16
+      },
+      "use_scene": {
+        "str": 16
+      },
+      "used_texturerender": {
+        "int": 16
+      },
+      "video_live_manager": {
+        "str": 16
+      },
+      "video_size_height": {
+        "str": 16
+      },
+      "video_size_width": {
+        "str": 16
+      },
+      "volume_setting": {
+        "int": 2,
+        "float": 14
+      },
+      "width": {
+        "int": 16
+      },
+      "x_client_ip": {
+        "str": 16
+      },
+      "x_server_ip": {
+        "str": 16
+      },
+      "enable_open_other_codec": {
+        "int": 2
+      },
+      "enable_vrr": {
+        "int": 2
+      },
+      "last_session_id": {
+        "str": 5
+      },
+      "major_anchor_level": {
+        "str": 5
+      },
+      "pull_protocol": {
+        "str": 5
+      },
+      "reason": {
+        "int": 8
+      },
+      "render_type": {
+        "int": 2
+      },
+      "session_elapsed_time_ms": {
+        "int": 2
+      },
+      "stream_version": {
+        "int": 6
+      },
+      "UsePreconnectIp": {
+        "int": 3
+      },
+      "UseRedirectedIp": {
+        "int": 3
+      },
+      "abr_check_enhance": {
+        "int": 3
+      },
+      "audio_buffer_time": {
+        "int": 8
+      },
+      "audio_device_open_end": {
+        "int": 4
+      },
+      "audio_device_open_start": {
+        "int": 4
+      },
+      "audio_first_pkt_pos": {
+        "int": 4
+      },
+      "audio_first_pkt_pts": {
+        "int": 4
+      },
+      "container_fps": {
+        "int": 7
+      },
+      "download_speed": {
+        "int": 4
+      },
+      "drm_get_secret_key_end": {
+        "int": 3
+      },
+      "drop_audio_cost": {
+        "int": 4
+      },
+      "drop_audio_pts_diff": {
+        "int": 4
+      },
+      "enable_tcp_fast_open": {
+        "int": 3
+      },
+      "evaluator_symbol": {
+        "str": 4
+      },
+      "find_stream_info_end": {
+        "int": 4
+      },
+      "find_stream_info_start": {
+        "int": 4
+      },
+      "first_audio_frame_decode_end": {
+        "int": 4
+      },
+      "first_audio_frame_decode_start": {
+        "int": 2
+      },
+      "first_audio_frame_end": {
+        "int": 3
+      },
+      "first_audio_package_end": {
+        "int": 4
+      },
+      "first_frame_from_player_core": {
+        "int": 3
+      },
+      "first_frame_render_end": {
+        "int": 4
+      },
+      "first_frame_stage_tracker": {
+        "int": 4
+      },
+      "first_play_time": {
+        "int": 1
+      },
+      "first_sei_delay": {
+        "int": 4
+      },
+      "first_video_frame_decode_end": {
+        "int": 4
+      },
+      "first_video_frame_decode_start": {
+        "int": 2
+      },
+      "first_video_frame_end": {
+        "int": 2
+      },
+      "first_video_frame_send_outlet_time": {
+        "int": 4
+      },
+      "first_video_package_end": {
+        "int": 4
+      },
+      "hit_cache": {
+        "int": 1
+      },
+      "hit_node_optimize": {
+        "int": 4
+      },
+      "http_open_start": {
+        "int": 3
+      },
+      "http_req_finish_time": {
+        "int": 4
+      },
+      "http_res_finish_time": {
+        "int": 4
+      },
+      "ipv6_probe_result": {
+        "int": 3
+      },
+      "is_free_flow": {
+        "int": 3
+      },
+      "last_retry_end": {
+        "int": 1
+      },
+      "optimize_backup_ips": {
+        "str": 1,
+        "list": 2
+      },
+      "player_dns_analysis_end": {
+        "int": 4
+      },
+      "pre_connect": {
+        "int": 3
+      },
+      "prepare_block_end": {
+        "int": 4
+      },
+      "prepare_end": {
+        "int": 4
+      },
+      "preplay_enter_room_timestamp": {
+        "int": 3
+      },
+      "request_cdn_cached": {
+        "int": 3
+      },
+      "request_time_for_cdn": {
+        "int": 3
+      },
+      "request_time_to_source": {
+        "int": 3
+      },
+      "response_header_Via": {
+        "str": 3
+      },
+      "response_header_X-Server-IP": {
+        "str": 3
+      },
+      "rtc_answer_recv_end": {
+        "int": 2
+      },
+      "rtc_ice_connected_time": {
+        "int": 2
+      },
+      "rtc_inited_end": {
+        "int": 2
+      },
+      "rtc_offer_send_end": {
+        "int": 2
+      },
+      "rtc_preload_result": {
+        "int": 2
+      },
+      "rtc_start_end": {
+        "int": 3
+      },
+      "rtc_tls_handshake_end": {
+        "int": 2
+      },
+      "rtc_use_sdk_dns": {
+        "int": 2
+      },
+      "sdk_dns_analysis_end": {
+        "int": 4
+      },
+      "set_surface_time": {
+        "int": 3
+      },
+      "socket_create_end": {
+        "int": 3
+      },
+      "stall_time": {
+        "int": 7
+      },
+      "start": {
+        "int": 4
+      },
+      "tcp_connect_end": {
+        "int": 4
+      },
+      "tcp_first_package_end": {
+        "int": 4
+      },
+      "tfo_fall_back_time": {
+        "int": 3
+      },
+      "tfo_success": {
+        "int": 3
+      },
+      "total_cost": {
+        "int": 3
+      },
+      "trans_open_start": {
+        "int": 3
+      },
+      "trans_params_bandwidth": {
+        "int": 3
+      },
+      "trans_params_bandwidth_decision": {
+        "int": 3
+      },
+      "trans_strategy_params": {
+        "str": 3
+      },
+      "used_drm": {
+        "int": 3
+      },
+      "video_buffer_time": {
+        "int": 8
+      },
+      "video_device_open_end": {
+        "int": 4
+      },
+      "video_device_open_start": {
+        "int": 4
+      },
+      "video_device_wait_end": {
+        "int": 4
+      },
+      "video_device_wait_start": {
+        "int": 4
+      },
+      "video_first_pkt_pos": {
+        "int": 4
+      },
+      "video_first_pkt_pts": {
+        "int": 4
+      },
+      "video_param_send_outlet_time": {
+        "int": 4
+      },
+      "video_render_type": {
+        "int": 4
+      },
+      "RedirectedPort": {
+        "str": 2
+      },
+      "code": {
+        "int": 6
+      },
+      "error_msg": {
+        "str": 3
+      },
+      "first_audio_packet_dts": {
+        "int": 2
+      },
+      "first_audio_packet_dts_rollback": {
+        "int": 2
+      },
+      "is_stream_received": {
+        "int": 3
+      },
+      "is_vv_first_frame": {
+        "bool": 2
+      },
+      "node_optimize_info": {
+        "str": 2
+      },
+      "open_dns_optimizer": {
+        "int": 2
+      },
+      "pre302_trace": {
+        "str": 2
+      },
+      "pre_redirect_ip": {
+        "str": 2
+      },
+      "previous_audio_packet_dts": {
+        "int": 2
+      },
+      "retry": {
+        "int": 2
+      },
+      "rtm_data_first_audio_frame_decode_start": {
+        "int": 2
+      },
+      "rtm_data_first_audio_frame_end": {
+        "int": 2
+      },
+      "rtm_data_first_audio_packet": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_decode_start": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_decoded": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_end": {
+        "int": 2
+      },
+      "rtm_data_first_video_frame_rendered": {
+        "int": 2
+      },
+      "rtm_data_first_video_packet": {
+        "int": 2
+      },
+      "rtm_data_ice_connect_start": {
+        "int": 2
+      },
+      "rtm_data_ice_connected": {
+        "int": 2
+      },
+      "rtm_first_frame_time_info": {
+        "str": 2
+      },
+      "rtm_init_end": {
+        "int": 2
+      },
+      "rtm_signal_answer_received": {
+        "int": 2
+      },
+      "rtm_signal_answer_updated": {
+        "int": 2
+      },
+      "rtm_signal_dns_analysis_end": {
+        "int": 2
+      },
+      "rtm_signal_offer_created": {
+        "int": 2
+      },
+      "rtm_signal_offer_sent": {
+        "int": 2
+      },
+      "rtm_signal_transport_connected": {
+        "int": 2
+      },
+      "sdk_dns_end": {
+        "int": 2
+      },
+      "sdk_session_start": {
+        "int": 3
+      },
+      "session_succ_elapse": {
+        "int": 3
+      },
+      "set_surface": {
+        "int": 3
+      },
+      "start_time": {
+        "int": 2
+      },
+      "wait_surface_elapse": {
+        "int": 3
+      },
+      "audio_decoder_buffer_time": {
+        "int": 4
+      },
+      "audio_render_buffer_time": {
+        "int": 4
+      },
+      "decoder_fps": {
+        "int": 4
+      },
+      "render_fps": {
+        "float": 4
+      },
+      "type": {
+        "str": 4
+      },
+      "video_decoder_buffer_time": {
+        "int": 4
+      },
+      "video_render_buffer_time": {
+        "int": 4
+      },
+      "aes_boost_cfg_type": {
+        "int": 1
+      },
+      "aes_boost_group_id": {
+        "int": 1
+      },
+      "aes_boost_not_use_reason": {
+        "int": 1
+      },
+      "aes_boost_used": {
+        "int": 1
+      },
+      "arhq_alg_type": {
+        "int": 1
+      },
+      "arhq_used": {
+        "int": 1
+      },
+      "background_watching_time": {
+        "int": 1
+      },
+      "br_mean": {
+        "int": 1
+      },
+      "br_scale": {
+        "int": 1
+      },
+      "cellular_play_time": {
+        "int": 1
+      },
+      "cellular_total_download_size": {
+        "int": 1
+      },
+      "change_session_reason": {
+        "str": 1
+      },
+      "ct_m_b": {
+        "str": 1
+      },
+      "enable_use_sdr2hdr": {
+        "int": 1
+      },
+      "first_stall_duration": {
+        "int": 1
+      },
+      "first_stall_time": {
+        "int": 1
+      },
+      "http_flow_size": {
+        "int": 1
+      },
+      "http_patch_dts_size": {
+        "int": 1
+      },
+      "http_substream_size": {
+        "int": 1
+      },
+      "httpio_play_time": {
+        "int": 1
+      },
+      "index": {
+        "int": 1
+      },
+      "initial_play_time": {
+        "int": 1
+      },
+      "inner_play_time": {
+        "int": 1
+      },
+      "inner_preplay_play_time": {
+        "int": 1
+      },
+      "is_first_play": {
+        "bool": 1
+      },
+      "is_flow_vision": {
+        "int": 1
+      },
+      "is_waiting": {
+        "int": 1
+      },
+      "network_timeout": {
+        "int": 1
+      },
+      "nnsr_enabled": {
+        "int": 1
+      },
+      "p2p_flow_size": {
+        "int": 1
+      },
+      "p2p_flv_detail": {
+        "str": 1
+      },
+      "p2p_mobile_flow_size": {
+        "int": 1
+      },
+      "p2pio_play_time": {
+        "int": 1
+      },
+      "play_size": {
+        "int": 1
+      },
+      "play_time": {
+        "int": 1
+      },
+      "play_time_on_no_frame": {
+        "int": 1
+      },
+      "playing_info": {
+        "dict": 1
+      },
+      "preview_play_time": {
+        "int": 1
+      },
+      "preview_preplay_play_time": {
+        "int": 1
+      },
+      "render_fail_type": {
+        "int": 3
+      },
+      "room_play_time_ms": {
+        "int": 1
+      },
+      "sdk_params": {
+        "str": 1
+      },
+      "sdk_session_stop": {
+        "int": 1
+      },
+      "sdr2hdr_not_use_reason": {
+        "int": 1
+      },
+      "sdr2hdr_used": {
+        "int": 1
+      },
+      "segement_count": {
+        "int": 1
+      },
+      "segement_request": {
+        "list": 1
+      },
+      "session_duration_time": {
+        "int": 1
+      },
+      "sharpen_alg_type": {
+        "int": 1
+      },
+      "sharpen_cfg_reason": {
+        "str": 1
+      },
+      "sharpen_cfg_type": {
+        "int": 1
+      },
+      "sharpen_enabled": {
+        "int": 1
+      },
+      "sharpen_level": {
+        "int": 1
+      },
+      "sharpen_not_use_reason": {
+        "int": 1
+      },
+      "sharpen_used": {
+        "int": 1
+      },
+      "small_window_play_time": {
+        "int": 1
+      },
+      "socket_err_code": {
+        "int": 3
+      },
+      "socket_err_type": {
+        "int": 3
+      },
+      "source_resolution": {
+        "str": 1
+      },
+      "sr_alg_type": {
+        "int": 1
+      },
+      "sr_cfg_reason": {
+        "str": 1
+      },
+      "sr_cfg_type": {
+        "int": 1
+      },
+      "sr_not_use_reason": {
+        "int": 1
+      },
+      "sr_scale_type": {
+        "int": 1
+      },
+      "sr_scale_type_float": {
+        "int": 1
+      },
+      "sr_sharp_level": {
+        "int": 1
+      },
+      "sr_used": {
+        "int": 1
+      },
+      "stall_count": {
+        "int": 1
+      },
+      "stop_time": {
+        "int": 1
+      },
+      "svc_play": {
+        "int": 1
+      },
+      "switch_cellular_detail": {
+        "str": 1
+      },
+      "switch_cellular_reason": {
+        "int": 1
+      },
+      "switch_cellular_result": {
+        "int": 1
+      },
+      "switch_default_detail": {
+        "str": 1
+      },
+      "switch_default_reason": {
+        "int": 1
+      },
+      "switch_default_result": {
+        "int": 1
+      },
+      "switch_reason": {
+        "str": 1
+      },
+      "target_resolution": {
+        "str": 1
+      },
+      "total_download_size": {
+        "int": 1
+      },
+      "use_sharpen": {
+        "int": 1
+      },
+      "video_render_change_count": {
+        "int": 1
+      },
+      "view_height": {
+        "int": 1
+      },
+      "view_width": {
+        "int": 1
+      },
+      "vvc_report_info": {
+        "str": 1
+      },
+      "wait_time": {
+        "int": 1
+      },
+      "playing_info.playing_http_flow_size": {
+        "int": 1
+      },
+      "playing_info.playing_p2p_flow_size": {
+        "int": 1
+      },
+      "playing_info.playing_p2p_mobile_flow_size": {
+        "int": 1
+      },
+      "auto_res": {
+        "str": 10
+      },
+      "info": {
+        "str": 1
+      },
+      "spspps": {
+        "str": 1
+      },
+      "player_open_input_start": {
+        "int": 1
+      },
+      "audio_capture_router": {
+        "str": 4
+      },
+      "audio_router": {
+        "str": 4
+      },
+      "denoise_aed_scene": {
+        "str": 4
+      },
+      "denoise_bound": {
+        "str": 4
+      },
+      "noise_estimation_mode": {
+        "str": 4
+      },
+      "render_view_gravity": {
+        "str": 4
+      },
+      "render_view_height": {
+        "str": 4
+      },
+      "render_view_margin_bottom": {
+        "str": 4
+      },
+      "render_view_margin_left": {
+        "str": 4
+      },
+      "render_view_margin_right": {
+        "str": 4
+      },
+      "render_view_margin_top": {
+        "str": 4
+      },
+      "render_view_parent_height": {
+        "str": 4
+      },
+      "render_view_parent_translate_y": {
+        "str": 4
+      },
+      "render_view_parent_width": {
+        "str": 4
+      },
+      "render_view_scale_type": {
+        "str": 4
+      },
+      "render_view_width": {
+        "str": 4
+      },
+      "surface_view_surface": {
+        "str": 4
+      },
+      "surface_view_surface_is_valid": {
+        "str": 4
+      },
+      "use_new_layout": {
+        "str": 4
+      },
+      "audio_buffer_time_stall_end": {
+        "int": 1
+      },
+      "audio_buffer_time_stall_start": {
+        "int": 1
+      },
+      "last_res": {
+        "str": 1
+      },
+      "recover_reason": {
+        "int": 1
+      },
+      "stall_end": {
+        "int": 1
+      },
+      "stall_start": {
+        "int": 1
+      },
+      "stall_start_sub_scene": {
+        "int": 1
+      },
+      "stall_start_ver": {
+        "int": 1
+      },
+      "video_buffer_time_stall_end": {
+        "int": 1
+      },
+      "video_buffer_time_stall_start": {
+        "int": 1
+      }
+    },
+    "original_battery_receiver": {
+      "source": {
+        "str": 1
+      },
+      "temperature_raw": {
+        "int": 1
+      }
+    },
+    "X.1dhX": {
+      "room_id": {
+        "str": 3
+      },
+      "anchor_id": {
+        "str": 2
+      },
+      "user_id": {
+        "str": 1
+      },
+      "live_type": {
+        "str": 2
+      },
+      "definition": {
+        "str": 2
+      },
+      "change_type": {
+        "str": 1
+      },
+      "change_resolution": {
+        "str": 2
+      },
+      "click_position": {
+        "str": 1
+      },
+      "is_vr_machine": {
+        "str": 1
+      },
+      "liveio_play": {
+        "str": 1
+      },
+      "resolution_key": {
+        "str": 1
+      },
+      "follow_status": {
+        "str": 1
+      },
+      "background_source": {
+        "str": 1
+      },
+      "life_expand_type": {
+        "str": 1
+      },
+      "is_gaming": {
+        "str": 1
+      },
+      "request_page": {
+        "str": 1
+      },
+      "is_return": {
+        "str": 1
+      },
+      "is_horizontal_stream": {
+        "str": 1
+      },
+      "p2pType": {
+        "str": 1
+      },
+      "is_from_read": {
+        "str": 1
+      },
+      "order": {
+        "str": 1
+      },
+      "is_appointed": {
+        "str": 1
+      },
+      "resolution_height": {
+        "str": 1
+      },
+      "is_group_co_rec": {
+        "str": 1
+      },
+      "btm_id": {
+        "str": 1
+      },
+      "is_auto": {
+        "str": 1
+      },
+      "portType": {
+        "str": 1
+      },
+      "click_moment": {
+        "str": 1
+      },
+      "resolution_screen": {
+        "str": 1
+      },
+      "streaming_type": {
+        "str": 1
+      },
+      "headset_2": {
+        "str": 1
+      },
+      "is_life_cart": {
+        "str": 1
+      },
+      "life_expand_product_sku_id": {
+        "str": 1
+      },
+      "is_auto_enter": {
+        "str": 1
+      },
+      "resolution_width": {
+        "str": 1
+      },
+      "vr_type": {
+        "str": 1
+      },
+      "enable_liveio_play": {
+        "str": 1
+      },
+      "resolution_name": {
+        "str": 1
+      },
+      "is_multi_camera_mode_on": {
+        "str": 1
+      },
+      "p2p_play_duration": {
+        "str": 1
+      },
+      "is_show_distant_module": {
+        "str": 1
+      },
+      "is_game_promote_room": {
+        "str": 1
+      },
+      "live_cover_mode": {
+        "str": 1
+      },
+      "portType_2": {
+        "str": 1
+      },
+      "is_support_landscape": {
+        "str": 1
+      },
+      "vs_episode_stage": {
+        "str": 1
+      },
+      "highest_resolution_key": {
+        "str": 1
+      },
+      "fold_state": {
+        "str": 1
+      },
+      "is_expand_area": {
+        "str": 1
+      },
+      "is_playback_support": {
+        "str": 1
+      },
+      "view_resolution": {
+        "str": 1
+      },
+      "growth_deepevent": {
+        "str": 1
+      },
+      "volume_level": {
+        "str": 2
+      },
+      "liveio_p2p": {
+        "str": 1
+      },
+      "share_screen": {
+        "str": 1
+      },
+      "headset": {
+        "str": 1
+      },
+      "distant_km": {
+        "str": 1
+      },
+      "is_life": {
+        "str": 1
+      },
+      "click_order": {
+        "str": 1
+      },
+      "anchor_type": {
+        "str": 1
+      },
+      "has_ecom_tag": {
+        "str": 1
+      },
+      "resolution_strategy": {
+        "str": 1
+      },
+      "audience_type": {
+        "str": 1
+      },
+      "pre_room_orientation": {
+        "str": 1
+      },
+      "distinct_level": {
+        "str": 1
+      },
+      "enter_action": {
+        "str": 1
+      },
+      "pass_through_log_data": {
+        "str": 1
+      },
+      "is_same_city": {
+        "str": 1
+      },
+      "total_drop_time": {
+        "str": 1
+      },
+      "video_total_stall_rate": {
+        "str": 1
+      },
+      "video_ui_total_stall_rate": {
+        "str": 1
+      },
+      "has_entered_background": {
+        "str": 1
+      },
+      "has_stall": {
+        "str": 2
+      },
+      "video_stall_count": {
+        "str": 1
+      },
+      "avg_fps": {
+        "str": 1
+      },
+      "ui_stall_duration": {
+        "str": 1
+      },
+      "video_stall_duration": {
+        "str": 1
+      },
+      "ui_serious_stall_rate": {
+        "str": 1
+      },
+      "scene": {
+        "str": 1
+      },
+      "duration": {
+        "str": 1
+      },
+      "draw_room_count": {
+        "str": 2
+      },
+      "ui_stall_count": {
+        "str": 1
+      },
+      "ui_total_stall_rate": {
+        "str": 1
+      },
+      "ui_stall_duration_sum": {
+        "str": 1
+      },
+      "report_scene": {
+        "str": 1
+      },
+      "total_drop_count": {
+        "str": 1
+      },
+      "ui_slight_stall_rate": {
+        "str": 1
+      },
+      "ui_stall_count_sum": {
+        "str": 1
+      },
+      "is_first_start": {
+        "str": 1
+      },
+      "ui_moderate_stall_rate": {
+        "str": 1
+      },
+      "is_grouped_lived": {
+        "str": 2
+      },
+      "has_init_webview": {
+        "str": 1
+      },
+      "room_type": {
+        "str": 2
+      },
+      "is_anchor": {
+        "str": 1
+      },
+      "player_client_vr_fov": {
+        "str": 1
+      },
+      "is_top_anchor": {
+        "str": 1
+      },
+      "resolution": {
+        "str": 1
+      },
+      "mem_java_max": {
+        "str": 1
+      },
+      "stream_cdn_play_url": {
+        "str": 1
+      },
+      "user_type": {
+        "str": 1
+      },
+      "player_client_play_url": {
+        "str": 1
+      },
+      "stream_cdn_ip": {
+        "str": 1
+      },
+      "audio_render_rms_db": {
+        "str": 1
+      },
+      "mem_sum_system": {
+        "str": 1
+      },
+      "player_client_pulling_stream_count": {
+        "str": 1
+      },
+      "is_avatar_anim_running": {
+        "str": 1
+      },
+      "resolution_fps": {
+        "str": 1
+      },
+      "player_client_can_share": {
+        "str": 1
+      },
+      "mem_java_total": {
+        "str": 1
+      },
+      "cpu_speed": {
+        "str": 1
+      },
+      "stall_ui_count": {
+        "str": 1
+      },
+      "stall_video_count": {
+        "str": 1
+      },
+      "mem_device_threshold": {
+        "str": 1
+      },
+      "player_client_biz_domain": {
+        "str": 1
+      },
+      "enter_method": {
+        "str": 1
+      },
+      "super_resolution_enabled": {
+        "str": 1
+      },
+      "stream_real_fps": {
+        "str": 1
+      },
+      "use_scene": {
+        "str": 1
+      },
+      "mem_java_used_percentage": {
+        "str": 1
+      },
+      "battery_voltage": {
+        "str": 1
+      },
+      "texture_render_enabled": {
+        "str": 1
+      },
+      "gpu_usage": {
+        "str": 1
+      },
+      "mem_java_free": {
+        "str": 1
+      },
+      "player_client_count": {
+        "str": 1
+      },
+      "mem_pss_native": {
+        "str": 1
+      },
+      "live_os_version": {
+        "str": 1
+      },
+      "mem_sum_native": {
+        "str": 1
+      },
+      "player_client_playing_count": {
+        "str": 1
+      },
+      "stall_ui_rate": {
+        "str": 1
+      },
+      "stall_ui_slight_rate": {
+        "str": 1
+      },
+      "is_backgrounded": {
+        "str": 1
+      },
+      "landscape_scene": {
+        "str": 1
+      },
+      "mem_native_lave": {
+        "str": 1
+      },
+      "stall_ui_duration": {
+        "str": 1
+      },
+      "main_cpu_rate": {
+        "str": 1
+      },
+      "battery_level": {
+        "str": 1
+      },
+      "stall_ui_rate_new": {
+        "str": 1
+      },
+      "mem_pss_dalvik": {
+        "str": 1
+      },
+      "create_scene": {
+        "str": 1
+      },
+      "stream_preview_fps": {
+        "str": 1
+      },
+      "game_render_fps": {
+        "str": 1
+      },
+      "player_client_associate_page": {
+        "str": 1
+      },
+      "sharpen_enabled": {
+        "str": 1
+      },
+      "mem_device_available": {
+        "str": 1
+      },
+      "temperature_android": {
+        "str": 1
+      },
+      "mem_sum_stack": {
+        "str": 1
+      },
+      "render_cpu_rate": {
+        "str": 1
+      },
+      "stall_video_rate": {
+        "str": 1
+      },
+      "room_audience_count": {
+        "str": 1
+      },
+      "stall_video_ui_rate": {
+        "str": 1
+      },
+      "player_client_stream_size": {
+        "str": 1
+      },
+      "hotroom_type": {
+        "str": 1
+      },
+      "battery_scale": {
+        "str": 1
+      },
+      "mem_java_used": {
+        "str": 1
+      },
+      "mem_sum_graphics": {
+        "str": 1
+      },
+      "mem_pss_total": {
+        "str": 1
+      },
+      "stall_drop_frame": {
+        "str": 1
+      },
+      "volume_max_level": {
+        "str": 1
+      },
+      "mem_sum_java": {
+        "str": 1
+      },
+      "enter_from_merge": {
+        "str": 1
+      },
+      "volume_change_value": {
+        "str": 1
+      },
+      "multi_infos": {
+        "str": 1
+      },
+      "battery_state_android": {
+        "str": 1
+      },
+      "mem_device_total": {
+        "str": 1
+      },
+      "auto_resolution_state": {
+        "str": 1
+      },
+      "mem_sum_other": {
+        "str": 1
+      },
+      "modules": {
+        "str": 1
+      },
+      "room_stay_duration": {
+        "str": 1
+      },
+      "battery_current": {
+        "str": 1
+      },
+      "stall_video_duration": {
+        "str": 1
+      },
+      "audio_decoder_rms_db": {
+        "str": 1
+      },
+      "p2p_play_enabled": {
+        "str": 1
+      },
+      "player_client_resolution": {
+        "str": 1
+      },
+      "is_portrait": {
+        "str": 1
+      },
+      "live_vs_recording": {
+        "str": 1
+      },
+      "mem_device_mem_Low": {
+        "str": 1
+      },
+      "stall_ui_minor_rate": {
+        "str": 1
+      },
+      "mem_vmsize": {
+        "str": 1
+      },
+      "resolution_ui_name": {
+        "str": 1
+      },
+      "action_type": {
+        "str": 1
+      },
+      "monitor_trigger": {
+        "str": 1
+      },
+      "current_pythia_scroe": {
+        "str": 1
+      },
+      "mem_java_lave": {
+        "str": 1
+      },
+      "stall_video_origin_info": {
+        "str": 1
+      },
+      "result_sdk_key": {
+        "str": 1
+      },
+      "mem_trim_level": {
+        "str": 1
+      },
+      "stall_ui_moderate_rate": {
+        "str": 1
+      },
+      "mem_sum_code": {
+        "str": 1
+      },
+      "player_client_state": {
+        "str": 1
+      },
+      "stall_ui_serious_rate": {
+        "str": 1
+      },
+      "stall_monitor_duration": {
+        "str": 1
+      },
+      "fps": {
+        "str": 1
+      },
+      "extra_render_layout": {
+        "str": 1
+      },
+      "live_sdk_version": {
+        "str": 1
+      },
+      "cpu_rate": {
+        "str": 1
+      },
+      "stable_pythia_scroe": {
+        "str": 1
+      },
+      "is_live": {
+        "str": 1
+      },
+      "stream_host": {
+        "str": 1
+      },
+      "battery_health": {
+        "str": 1
+      },
+      "net_quality": {
+        "str": 1
+      },
+      "stream_surface_render": {
+        "str": 1
+      }
+    }
+  },
+  "hook_coverage": [
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onStatistics",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onMonitorLog",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onStallStart",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onStallEnd",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onAudioRenderStall",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onVideoRenderStall",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onFirstAudioFrameRender",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LiveSdkObserverClientImplProxy2",
+      "method": "onFirstVideoFrameRender",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LivePlayerClient",
+      "method": "e",
+      "installed": true
+    },
+    {
+      "class": "X.0BL2",
+      "method": "LJJZZIII",
+      "installed": true
+    },
+    {
+      "class": "com.bytedance.android.livesdk.player.LivePlayerAdapter$setAppInfoFetcher$appInfoFetcher$2",
+      "method": "getAppInfo",
+      "installed": true
+    },
+    {
+      "class": "X.1djI",
+      "method": "LIZ",
+      "installed": true
+    },
+    {
+      "class": "X.1dlH",
+      "method": "LJJLJ",
+      "installed": true
+    },
+    {
+      "class": "X.1dhX",
+      "method": "LJJLJ",
+      "installed": true
+    },
+    {
+      "class": "X.1dAZ",
+      "method": "LIZ",
+      "installed": true
+    }
+  ],
+  "scope": "Only observed field names/types and occurrence counts. No payload values, identifiers, URLs, customer experimental data or performance conclusions. Not an exhaustive inventory of the entire client."
+}

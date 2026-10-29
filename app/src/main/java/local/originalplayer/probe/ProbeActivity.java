@@ -33,6 +33,7 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
     private File root;
     private int engine;
     private SyntheticLiveSource synthetic;
+    private DeviceTelemetry deviceTelemetry;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -110,6 +111,8 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
             record("initialization_stage_complete", name);
             attachObserver();
             if (!"play".equals(mode)) return;
+            deviceTelemetry = new DeviceTelemetry(this, main);
+            deviceTelemetry.start();
             if (!surface.getHolder().getSurface().isValid()) throw new IllegalStateException("Surface is not ready");
             String replayPath = getIntent().getStringExtra("replay");
             if (engine == 0 && replayPath == null) {
@@ -343,6 +346,7 @@ public final class ProbeActivity extends Activity implements SurfaceHolder.Callb
     }
 
     private void shutdown() {
+        if (deviceTelemetry != null) { deviceTelemetry.stop(); deviceTelemetry = null; }
         if (synthetic != null) { synthetic.close(); synthetic = null; }
         if (player == null) return;
         try { engineClass.getMethod("stop").invoke(player); }

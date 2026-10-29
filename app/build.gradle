@@ -7,8 +7,8 @@ android {
         applicationId 'local.originalplayer.probe'
         minSdk 23
         targetSdk 34
-        versionCode 3
-        versionName '0.3-research'
+        versionCode 4
+        versionName '0.4-research'
     }
     buildTypes { debug { minifyEnabled false } }
     sourceSets {

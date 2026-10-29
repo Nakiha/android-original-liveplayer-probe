@@ -22,7 +22,10 @@ jobs:
           packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
           log-accepted-android-sdk-licenses: false
       - name: Check Python tools
-        run: python3 -m py_compile tools/*.py
+        run: |
+          python3 -m py_compile tools/*.py
+          python3 -m unittest discover -s tests -v
+          node --check tools/observe_telemetry.js
       - name: Generate owned H.264/H.265 smoke inputs
         run: |
           sudo apt-get update -qq

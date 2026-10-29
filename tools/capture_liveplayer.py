@@ -6,15 +6,17 @@ Requires matching frida/frida-tools and a rooted development device/emulator.
 import argparse
 from collections import Counter
 import json
+import os
 from pathlib import Path
 import threading
 import time
 
 import frida
 import frida_tools
+from capture_cleanup import detach_bounded
 
 
-def main():
+def main(agent_name='observe_liveplayer.js'):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--device', required=True)
     parser.add_argument('--pid', required=True, type=int)
@@ -22,6 +24,8 @@ def main():
     parser.add_argument('--seconds', type=int, default=35)
     parser.add_argument('--statistics', action='store_true', help='Explicit diagnostic change: enable original statistics callbacks at 1 second')
     args = parser.parse_args()
+    if agent_name != 'observe_liveplayer.js' and args.statistics:
+        parser.error('The telemetry agent observes existing callbacks and does not override statistics settings')
     if not 1 <= args.seconds <= 120:
         parser.error('--seconds must be between 1 and 120')
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -30,7 +34,7 @@ def main():
         raise RuntimeError('Install a matching frida-tools package with the Java bridge')
     source = bridge.read_text(encoding='utf-8') + '\nglobalThis.Java = bridge;\n'
     source += 'globalThis.LP_OPTIONS=' + json.dumps({'statistics': args.statistics}) + ';\n'
-    source += Path(__file__).with_name('observe_liveplayer.js').read_text(encoding='utf-8')
+    source += Path(__file__).with_name(agent_name).read_text(encoding='utf-8')
     ready = threading.Event()
     detached = threading.Event()
     counters = Counter()
@@ -49,15 +53,26 @@ def main():
         script.on('message', message)
         script.load()
         if not ready.wait(15):
-            session.detach()
+            completed, _ = detach_bounded(session)
+            if not completed:
+                output.flush()
+                print('Frida cleanup timed out; local records are preserved. Stop the target process before retrying.', flush=True)
+                os._exit(3)
             raise RuntimeError('Player observation did not become ready; inspect the local log')
         print('Player observation ready; payloads stay in the local file.', flush=True)
         deadline = time.monotonic() + args.seconds
         while time.monotonic() < deadline and not detached.wait(0.25):
             pass
         unexpected_detach = detached.is_set()
-        session.detach()
-    print(json.dumps({'events': dict(counters), 'target_exited_before_timeout': unexpected_detach}), flush=True)
+        completed, detach_errors = detach_bounded(session)
+        if not completed:
+            output.write(json.dumps({'event': 'capture_cleanup_timeout', 'value': 'Frida unload exceeded 5 seconds; target cleanup is required before another capture'}) + '\n')
+            output.flush()
+    print(json.dumps({'events': dict(counters), 'target_exited_before_timeout': unexpected_detach,
+                      'detach_completed': completed, 'detach_errors': detach_errors}), flush=True)
+    if not completed:
+        # Avoid a second blocking Frida destructor in the already-stalled IPC path.
+        os._exit(3)
 
 
 if __name__ == '__main__':

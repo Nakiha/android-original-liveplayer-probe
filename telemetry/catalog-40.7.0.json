@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "source_version_code": 400701,
+  "platform": "Android",
+  "evidence_file": "evidence-40.7.0.json",
+  "metrics": [
+    {
+      "id": "temperature_android",
+      "unit": "degree_Celsius_battery",
+      "status": "java_source_confirmed_and_runtime_report_observed",
+      "sources": ["LX/1dAZ;#LIZ", "LX/1dpf;#LIZ", "LX/1dzu;#LIZ", "LX/1dj9;#run"],
+      "calculation": "BATTERY_CHANGED.temperature / 10.0",
+      "limits": "Battery sensor, not CPU/GPU/skin. Backend averaging and iOS semantics unverified. Original receiver defaults missing input to zero; reference tool preserves missing input."
+    },
+    {
+      "id": "ui_stall_histogram",
+      "unit": "milliseconds",
+      "status": "java_branch_confirmed",
+      "sources": ["LX/1dj7;#LJIIIIZZ"],
+      "calculation": "bucket k contributes k * count[k] * frame_period_ms; minor=1..2, slight=3..6, moderate=7..13, serious>=14; UI duration/count exclude minor",
+      "limits": "Verified Java cache branch. Does not establish every native/new-statistics branch or the dashboard mapping."
+    },
+    {
+      "id": "ui_video_stall_rates",
+      "unit": "ratio",
+      "status": "java_branch_confirmed",
+      "sources": ["LX/1dj7;#LJII", "LX/1djI;#LIZ"],
+      "calculation": "ui_ms/window_ms; video_ms/window_ms; (ui_ms+video_ms)/window_ms",
+      "limits": "The combined value is a sum of durations, not interval union; input validity and window matter."
+    },
+    {
+      "id": "stall_ui_rate_new",
+      "unit": "ratio",
+      "status": "runtime_report_observed_formula_not_fully_recovered",
+      "sources": ["livesdk_performance_monitor_base_new"],
+      "related_fields": ["stall_ui_duration", "stall_monitor_duration", "stall_ui_rate", "stall_ui_rate_new"],
+      "limits": "One observed record is consistent with duration/window for both rates; this is not proof of all branches or dashboard equivalence."
+    },
+    {
+      "id": "first_frame",
+      "unit": "milliseconds",
+      "status": "native_adapter_mapping_confirmed_java_reference_formula_separate",
+      "sources": ["Lcom/bytedance/android/livesdk/player/LiveSdkObserverClientImplProxy2;#onStatistics", "LX/0BL2;#LJJIIJZLJL", "LX/0BL2;#LJJIJIIJI"],
+      "fields": ["firstFrameTimeMs", "firstLiveFrameTimeMs", "total_cost", "first_frame_render_end", "start"],
+      "limits": "Native statistics map firstFrameTimeMs to first_frame_time:. Legacy Java total_cost is render_end-start, but native timing internals and backend field selection are not fully recovered."
+    },
+    {
+      "id": "sei_delay",
+      "unit": "milliseconds",
+      "status": "legacy_java_branch_confirmed_native_formula_partial",
+      "sources": ["LX/0BL2;#LLII"],
+      "calculation": "wall_clock_ms - sei.ts + active_clock_offset_ms",
+      "limits": "Subject to source, tt_ntp and settings branches; native algorithm not assumed identical. stream_delay is a separate value. Preserve negative values for clock diagnosis."
+    },
+    {
+      "id": "live_sei_delay",
+      "unit": "native_array_semantics_unverified",
+      "status": "runtime_observed",
+      "related_fields": ["live_sei_delay_samples", "live_sei_delay_error_code", "live_sei_delay_error_msg", "live_sei_delay_last_ntp_diff_ms", "live_sei_delay_last_push_time_ms"],
+      "limits": "Array positions are not named means/percentiles. Error=-1 and samples=-1 with [0,0,0] have been observed; zeros in invalid records must not become zero-delay samples."
+    },
+    {
+      "id": "stage_stalls",
+      "unit": "milliseconds_and_counts_by_original_field",
+      "status": "runtime_fields_observed_legacy_threshold_branch_confirmed",
+      "sources": ["LX/0BL2;#LJLLI", "LX/0BL2;#LLIIIJ"],
+      "fields": ["stall_time", "video_render_stall_time", "audio_render_stall_time", "download_stall_time", "video_demux_stall_time", "video_decode_stall_time", "video_sync_stall_time", "video_buffer_control_stall_time"],
+      "limits": "Stages can overlap. Legacy render recording validates duration>threshold and duration<=now-start; online native threshold is not established. Periodic and cumulative counters must not be summed indiscriminately."
+    },
+    {
+      "id": "seconds_stalled_per_100_seconds",
+      "unit": "seconds_per_100_seconds",
+      "status": "reference_only_customer_formula_unverified",
+      "calculation": "100 * comparable_nonoverlapping_stall_ms / comparable_watch_ms",
+      "limits": "Not a 100ms threshold. Customer numerator, denominator, preview scope, weights, filtering and backend aggregation are unknown."
+    },
+    {
+      "id": "audio_video_buffers",
+      "unit": "milliseconds",
+      "status": "native_statistics_fields_observed",
+      "fields": ["audioBufferMs", "videoBufferMs"],
+      "limits": "Queue duration difference is not A/V presentation offset. Need render PTS, clock domain and synchronization policy to diagnose actual sync."
+    }
+  ],
+  "backend_unknown": ["dashboard field mapping", "sampling/downsampling", "user/session/sample weighting", "CUPED", "experiment bucketing", "multiple-comparison correction", "iOS metric semantics"],
+  "native_algorithm_scope": "No claim of complete native timing, stall detection or SEI aggregation recovery."
+}
